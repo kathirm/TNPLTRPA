@@ -1,0 +1,38 @@
+{
+ "Init" : {
+     "event1" :{
+         "nextstate" : "Processing",
+         "action" : "init_state"
+         }
+ },
+"Processing":{
+    "event2" : {
+        "nextstate" : "Pending",
+        "action" : "processing"
+    }
+},
+"Pending" : {
+    "event3" : {
+        "nextstate" : "Approved",
+        "action" : "pending"
+        }
+},
+"Approved" : {    
+    "event4" : {        
+        "nextstate" : "Success",
+        "action" : "success_alert"
+          },
+    "event5" : {
+        "nextstate" : "complete",
+        "action" : "complete_state"
+    },
+    "event6" : {
+        "nextstate" : "exit",
+        "action" : "approved_state"
+    },
+    "event7" : {
+        "nextstate" : "GoodBye",
+        "action" : "GoodByeFunc"
+    }
+} 
+}
