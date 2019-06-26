@@ -1,0 +1,23 @@
+{
+            "applicantName" : "MALIK178",
+            "fatherName" : "Swapnil Sharma",
+            "motherName" : "Neeti",
+            "husbandName" : "Ajay raj",
+            "applicantDob" : "1/01/2003",
+            "nationality" : "Indian",
+            "religion" : "Hindu",
+            "community" : "OC",
+            "addressLine1" : "1, 200 A, Syndicate Colony,",
+            "addressLine2" : "Anna Nagar,",
+            "district" : "Kanchipuram",
+            "state" : "Tamilnadu",
+            "country" : "India",
+            "pin" : "600040",
+            "phone" : "9600012478",
+            "guardOrFatherEmail" : "mkathir@terafastnet.com",
+            "classToWhichAdmissionSought" : "Diploma in PG",
+            "qualification" : "MA",
+            "occupation" : "Lecturer",
+            "salary" : "490000",
+            "reasonForAdmission" : "Interested in Doing PG"
+        }

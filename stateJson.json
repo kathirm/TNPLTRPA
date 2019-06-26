@@ -1,0 +1,34 @@
+{
+ "Init" : {
+     "event1" :{
+         "nextstate" : "Processing",
+         "action" : "functionName"
+         }
+ },
+"Processing":{
+    "event2" : {
+        "nextstate" : "Pending",
+        "action" : "functionName"
+    }
+},
+"Pending" : {
+    "event3" : {
+        "nextstate" : "Approved",
+        "action" : "functionName"
+        }
+},
+"Approved" : {
+    "event4" : {
+        "nextstate" : "Success",
+        "action" : "functionName"
+        },
+    "event5" : {
+        "nextstate" : "complete",
+        "action" : "functionName"
+        },
+    "event6" : {
+        "nextstate" : "mailsend",
+        "action" : "functionName"
+        }
+    }
+}
