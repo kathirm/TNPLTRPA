@@ -6,10 +6,10 @@ import boto
 def s3_conn():
     try:
         dev1 = {
-                "s3Url"       : "https://s3.pilot.wasabibeta.com",
-                "s3SecretKey" : "OUmHWz04XMCjbXAtnKBuWvNz9LBi60bYfdOV442o", 
-                "s3AccessKey" : "FM4863R8ZSIODSBVQ4P6", 
-                "region_name" : "us-east-1"
+                "s3Url"       : "xxxxxxxx",
+                "s3SecretKey" : "xxxxxxxxxxxx", 
+                "s3AccessKey" : "xxxxxxx", 
+                "region_name" : "xxxxxxxxxxxxxxx"
                }
         conn = boto3.client('s3', 
                 endpoint_url = dev1.get("s3Url"), 
