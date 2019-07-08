@@ -1,6 +1,6 @@
 import paho.mqtt.client as mqtt
 
-broker_url = "10.6.7.88"
+broker_url = "host"
 broker_port = 1883
 
 def on_message(client, userdata, message):
