@@ -17,7 +17,7 @@ if __name__ == "__main__":
                 }
                                                                                         
     client = mqtt.Client()
-    client.connect("10.6.7.88" , 1883)    
+    client.connect("host" , 1883)    
     client.subscribe("TestingTopic", qos=1)
     client.publish(topic = "TestingTopic", payload=json.dumps(data), qos=1, retain=False)
 
