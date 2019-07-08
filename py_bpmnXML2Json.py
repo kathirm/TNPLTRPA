@@ -16,7 +16,7 @@ import xml.etree.ElementTree as ET
 import xmltodict
 import json
 
-tree = ET.parse("workflow_diagram.bpmn")
+tree = ET.parse("Sample_Test.bpmn")
 xml_data = tree.getroot()
 
 xmlstr = ET.tostring(xml_data, encoding='utf8', method='xml')
