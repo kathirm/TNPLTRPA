@@ -36,7 +36,7 @@ if __name__ == "__main__":
     sysPath = sys.argv[4];
 
     home = expanduser('~')
-    path = home + "/" + sysPath +"/"+ dbName
+    path = home + "/" + sysPath +"/"+ dbName 
     print "mongodb Connection IP:  %s:%s DbName %s & syspath : %s"%(mongoIP, mongoPort, dbName, path)
     client = MongoClient('mongodb://userAdmin:terafastnetworks@'+ mongoIP,mongoPort) #db connectionInitialize
     #client = MongoClient(mongoIP,mongoPort)
