@@ -67,5 +67,5 @@ if __name__ == "__main__":
     print "Mqtt Connection :: %s && Waiting for Msg"%client
     client.on_message = on_message
     client.connect(broker_url, broker_port)
-    client.subscribe("Auth_Q", qos=1)
+    client.subscribe("Auth_Q", qos=1) 
     client.loop_forever()
