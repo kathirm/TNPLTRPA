@@ -2,7 +2,7 @@ import paho.mqtt.client as mqtt
 import datetime, json
 import requests
 
-broker_url = "10.6.0.14"
+broker_url = "10.7.0.14"
 broker_port = 1883
 
 def on_message(client, userdata, message):
