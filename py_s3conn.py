@@ -6,10 +6,10 @@ import boto
 def s3_conn():
     try:
         dev1 = {
-                "s3Url"       : "xxxxxxxx",
-                "s3SecretKey" : "xxxxxxxxxxxx", 
-                "s3AccessKey" : "xxxxxxx", 
-                "region_name" : "xxxxxxxxxxxxxxx"
+                "s3Url"       : "",
+                "s3SecretKey" : "",
+                "s3AccessKey" : "",
+                "region_name" : "",
                }
         conn = boto3.client('s3', 
                 endpoint_url = dev1.get("s3Url"), 
@@ -37,13 +37,14 @@ def get_s3_buckets(conn):
 
 def download_files(conn):
     try:
-        file_name = "M Eswari/M Eswari_1.jpg"
-        bucket_name = "facerec"
-        temp_dir = "/home/kathir/M Eswari/M Eswari_1.jpg"
-
-
-        down_load = conn.download_file(bucket_name, file_name, temp_dir)
-        print down_load
+        resource = boto3.resource('s3')
+        bucket = resource.Bucket('facerec')
+        objList = conn.list_objects(Bucket='facerec')['Contents']
+        for obj in objList:
+            obj_Key = obj['Key']
+            path,_destPath = os.path.split(obj_Key)
+            print ("Downloading file :"+ obj_Key);
+            conn.download_file('facerec', obj_Key, _destPath)
     except Exception as er:
         print "download_function exception error :: %s"%er
 
