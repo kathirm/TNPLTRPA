@@ -1,0 +1,10 @@
+
+systemctl status rc-local.service
+sudo systemctl status rc-local
+sudo systemctl start rc-local.service
+sudo systemctl status rc-local.service
+netstat -plan | grep 1883
+
+
+
+

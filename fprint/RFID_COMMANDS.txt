@@ -1,0 +1,55 @@
+#Open First Window
+paho_c_sub -t Auth_Q -c 10.6.0.14:1883
+
+#Open SecondWindow
+cd c-rfid/
+make
+sudo ./rfid-agent RFID1 IN
+
+#Open ThirdWindow
+cd c-rfid/
+make
+sudo ./rfid RFID1 OUT
+
+
+[gkhl : ghgh : ghG : gh]
+
+{
+'time': '16:15:15', 
+'Type': u'IN',
+'deviceID': u'RFID1', 
+'CardID': u'09490C69'
+}
+
+
+
+{
+"checkin" : NumberLong(0),
+"checkout" : NumberLong(1562680810000),
+"uId" : "001"
+}
+
+{'time': '16:35:28', 'Type': u'IN', 'deviceID': u'RFID1', 'CardID': u'09490C69'}
+
+
+
+
+
+
+F4564FD3
+
+
+14B0CF83
+
+
+http://10.6.4.21:8080/attendance?uId=002&checkout=18-04-2019 21:30:36
+
+http://controller:8080attendance?uId=09490C69&checkIn=11-07-2019 16:46:35
+
+
+
+
+
+
+
+4546FAE4

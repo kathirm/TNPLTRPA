@@ -1,0 +1,16 @@
+from datetime import date
+
+from datetime import datetime, timedelta
+
+today = date.today()
+
+d1 = today.strftime("%d/%m/%Y")
+
+date = datetime.strptime(d1, "%d/%m/%Y")
+
+modified_date = date + timedelta(days=1)
+
+datetime.strftime(modified_date, "%d/%m/%Y")
+
+
+Out[11]: '21/08/2019'

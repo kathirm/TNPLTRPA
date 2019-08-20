@@ -1,0 +1,20 @@
+ESSID:"TP-Link_4652"
+
+Terafast_3_2.4
+TP-Link_4652
+tplink-terafast-router2
+Sontineni
+TP-Link_4652_5G
+Terafast_5GHZ_FF
+Terafast-3-5
+Vinoth
+
+#WIFI CONFIGURATION
+sudo vim /etc/wpa_supplicant/wpa_supplicant.conf
+
+https://www.makeuseof.com/tag/setup-wi-fi-bluetooth-raspberry-pi-3/
+https://weworkweplay.com/play/automatically-connect-a-raspberry-pi-to-a-wifi-network/
+#Booting Time execution
+https://www.raspberrypi.org/forums/viewtopic.php?t=172607
+https://www.stuffaboutcode.com/2012/06/raspberry-pi-run-program-at-start-up.html
+https://raspberrypi.stackexchange.com/questions/8734/execute-script-on-start-up
