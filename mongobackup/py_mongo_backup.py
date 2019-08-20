@@ -26,8 +26,8 @@ def database_backup(ip, port, dbName, outputs_dir):
 if __name__ == "__main__":
 
     mongoIp = sys.argv[1]
-    mongoPort = 37017
-    dbName = sys.argv[2]
+    mongoPort = int(sys.argv[2])
+    dbName = sys.argv[3]
 
     home = expanduser('~')
     path = home + '/%s/%s'%(mongoIp, dbName)

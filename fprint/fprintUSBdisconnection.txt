@@ -1,0 +1,30 @@
+#/boot  Old Config  files
+
+
+Ref : 	https://pimylifeup.com/backup-raspberry-pi/
+	https://www.raspberrypi.org/forums/viewtopic.php?t=190555
+
+
+#cmdlie.txt
+
+dwc_otg.lpm_enable=0 console=serial0,115200 console=tty1 root=PARTUUID=eca6653e-02 rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait
+
+
+#Config.txt
+
+start_x=1
+gpu_mem=128
+dtparam=audio=on
+dtparam=spi=on
+
+
+
+
+
+ sudo /sbin/route del default
+
+
+sudo ifconfig eth0:1 10.6.10.1 netmask 255.255.0.0 up
+
+
+ sudo /sbin/route add default gw 10.6.0.5
