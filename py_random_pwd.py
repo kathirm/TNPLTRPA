@@ -4,9 +4,10 @@ import random
 def py_random_pwd():
     
     try:
-        chars = string.ascii_letters + string.digits;
+        #chars = string.ascii_letters + string.digits;
+        chars = string.digits;
         password = ''
-        for i in range(10):
+        for i in range(4):
             password += random.choice(chars)
         print "Random Password ::",password
     except Exception as er:
