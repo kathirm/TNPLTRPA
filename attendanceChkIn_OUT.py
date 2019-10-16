@@ -19,7 +19,7 @@ def date_backward(token, uId, chkType, inpttime):
         end = datetime.datetime.strptime(curdte, "%d-%m-%Y")
         date_array = (start +  datetime.timedelta(days=x) for x in range(0, (end-start).days))
         for date_object in date_array:
-            dte = (date_object.strftime("%d-%m-%Y"))
+            dte = (date_object.strftime("%Y-%m-%d"))
             dtlist.append(dte)
 
         startDate = datetime.datetime(2013, 9, 20,inpttime,00)
@@ -38,7 +38,7 @@ def date_backward(token, uId, chkType, inpttime):
             date = i.get("Date")
             time = i.get("time")
              
-            genurl = "http://controller:8080/attendance?uId=%s&%s=%s %s"%(uId, chkType, date, time)
+            genurl = "http://controller:8080/attendance?uId=%s&%s=%sT%s.948Z"%(uId, chkType, date, time)
             resp = requests.post(genurl, headers=headers)
             print "Response :: %s CheckType :: %s uId :: %s Date&time :: %s %s"%(resp, chkType, uId, date, time)
     except Exception as er:

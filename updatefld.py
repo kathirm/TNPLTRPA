@@ -24,8 +24,9 @@ def update():
         getappData = json.loads(resp.text)
         
         flg = {}
-        #flg["forceCheckout"] = False 
-        flg["shiftTime"] = "10.30"
+        flg["forceCheckout"] = False 
+       
+        #flg["shiftTime"] = "10.30"
         
         head = {"Authorization" : "Bearer %s"%token, "Content-Type":"application/json"}
         for data in getappData["Applications"]:

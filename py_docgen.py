@@ -49,6 +49,9 @@ class Pydocgen:
 
 if __name__ == "__main__":
 
+    if len(sys.argv) != 4:
+        print "Usage: %s <1.ControllerIP, 2.TenantName, 3.JSONFILENAME>" % (sys.argv[0])
+        sys.exit(0);
 
     ctrlIP = sys.argv[1];
     ctrlPort = int("8080"); 
