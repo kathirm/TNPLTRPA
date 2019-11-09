@@ -7,7 +7,7 @@ import schedule, requests
 def update():
 
     try:
-        tntName = "Pronto"
+        tntName = "Terafastnet"
         pwd = "!changeme!"
         headers = []
         login_url = "http://controller:8080/auth/login?username=Admin@%s&password=%s" %(tntName, pwd)
@@ -24,9 +24,10 @@ def update():
         getappData = json.loads(resp.text)
         
         flg = {}
-        flg["forceCheckout"] = False 
+        #flg["forceCheckout"] = False 
+        flg["docStatus"] = "DRAFT"
        
-        #flg["shiftTime"] = "10.30"
+        flg["shiftTime"] = "10.00"
         
         head = {"Authorization" : "Bearer %s"%token, "Content-Type":"application/json"}
         for data in getappData["Applications"]:

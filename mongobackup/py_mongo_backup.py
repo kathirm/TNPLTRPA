@@ -25,6 +25,10 @@ def database_backup(ip, port, dbName, outputs_dir):
     
 if __name__ == "__main__":
 
+    if len(sys.argv) != 4:
+        print "Usage: %s <1.DBIp, 2.Port, 3.DbName>" % (sys.argv[0])
+        sys.exit(0);
+
     mongoIp = sys.argv[1]
     mongoPort = int(sys.argv[2])
     dbName = sys.argv[3]

@@ -1,0 +1,38 @@
+#Plan
+updateMetaDataForEffectiveDate : function(data) {
+                var getData = data.planFieldsMetaData;
+                var effectiveDateMetadataIx = _.findIndex(getData, {nameId: "effectiveDates"});
+                if (effectiveDateMetadataIx >= 0) {
+                var patchData = [{label: "Start Date", optionNameId: "effectiveDateOnly"},
+                                    {label: "End Date", optionNameId: "endDateOnly"}]
+                getData[effectiveDateMetadataIx]["options"] = patchData;
+                data.planFieldsMetaData = getData;
+                }
+                return data;
+            },
+
+#Offering
+updateMetaDataForOfferingEffectiveDate : function(response) {
+                var getMetaData = response.data.offeringFieldsMetaData
+                var effectiveDateMetadataIx = _.findIndex(getMetaData, {nameId: "effectiveDates"});
+                if(effectiveDateMetadataIx >=0){
+                    var patchData = [{label: "Start Date", optionNameId: "effectiveDateOnly"},
+                    {label: "End Date", optionNameId: "endDateOnly"}]
+                getMetaData[effectiveDateMetadataIx]["options"] = patchData;
+                response.data.offeringFieldsMetaData = getMetaData;
+                }
+                return response;
+            },
+
+#Product
+updateMetaDataProductPlanEffectiveDate : function(metaData){
+                var prdtPlanMetaData =  metaData.productFieldsMetaData;
+                var effectiveDateMetadataIx = _.findIndex(prdtPlanMetaData, {nameId: "effectiveDates"});
+                if (effectiveDateMetadataIx >= 0){
+                    var patchData = [{label: "Start Date", optionNameId: "effectiveDateOnly"},
+                    {label: "End Date", optionNameId: "endDateOnly"}]
+                prdtPlanMetaData[effectiveDateMetadataIx]["options"] = patchData;
+                metaData.productFieldsMetaData = prdtPlanMetaData;
+                }
+                return metaData;
+            }
