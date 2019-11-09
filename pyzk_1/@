@@ -1,0 +1,60 @@
+import sys
+import csv, json
+from zk import ZK
+
+
+def attnd_json(val):
+    try:
+        list_dict = []
+        data = {}
+        for key, value in val.items():
+            data[key].append(value)
+
+        print data
+           
+
+
+
+        #with open("schdata.json", "w") as intFile:
+        #    intFile.write(intf)
+
+    except Exception as e:
+        print "writeJson file exception er"
+
+
+if __name__== '__main__':
+
+    users = []
+    ip = sys.argv[1]
+    port = int(sys.argv[2])
+
+    zk = ZK(ip, port, force_udp=True, verbose=False);
+    conn = zk.connect();
+
+    users = conn.get_users();
+    users_map = {}
+    for user in users:
+        if user.uid == 17:
+            pass
+        users_map[user.uid] = user;
+
+    att_data = conn.get_attendance();
+    atnd_dat = {}
+    atnd_lis  = []
+    for data in att_data:
+        uid = int(data.uid)
+        if int(data.uid) in users_map.keys(): 
+            #print "User %s(%s,%s) punched at %s, %s, %s " %(users_map[uid].name, str(uid), str(users_map[uid].card), 
+            #str(data.timestamp), str(data.punch), str(data.status))
+            atnd_dat["Name"] = users_map[uid].name;
+            atnd_dat["uId"]  = uid;
+            atnd_dat["cardNum"] = users_map[uid].card;
+            atnd_dat["time"] = str(data.timestamp);          
+            data = atnd_dat
+         #   attnd_json(atnd_dat)
+        else:
+            print "unknown user with  uid=%s punched at %s" %(uid, str(data.timestamp))
+        atnd_lis.append(data)
+    print atnd_lis 
+    zk.disconnect()
+       
