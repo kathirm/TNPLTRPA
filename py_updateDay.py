@@ -7,7 +7,7 @@ def login():
         tntName = "Pronto"
         pwd = "!changeme!"
         headers = []
-        login_url = "http://controller:8080/auth/login?username=Admin@%s&password=%s" %(tntName, pwd)
+        login_url = "http://139.59.18.236:8080/auth/login?username=Admin@%s&password=%s" %(tntName, pwd)
         token = requests.get(login_url, headers)
         if token.text is not None:
             token_dict= json.loads(token.text)
@@ -28,7 +28,7 @@ def getattendance(token):
         getYear = str(current_month_text) + '_'+ str(currentYear)
 
         headers = {"Authorization" : "Bearer %s"%token}
-        genURl = "http://controller:8080/attendance/getAttendance?checkin=%s 00:00:00&checkout=%s 23:59:59"%(str(today), str(today))
+        genURl = "http://139.59.18.236:8080/attendance/getAttendance?checkin=%s 00:00:00&checkout=%s 23:59:59"%(str(today), str(today))
         resp = requests.get(genURl, headers = headers)
         data =  json.loads(resp.text)
 
@@ -42,7 +42,7 @@ def getattendance(token):
         if dif is None:
             print "Today No Attendance Reords Found"
 
-        getUrl  = "http://controller:8080/search?q=TYPE:%22Application%22"
+        getUrl  = "http://139.59.18.236:8080/search?q=TYPE:%22Application%22"
         resp = requests.get(getUrl, headers=headers)
         getappData = json.loads(resp.text)
         url = "http://controller:8080"
