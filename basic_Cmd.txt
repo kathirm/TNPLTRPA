@@ -1,0 +1,59 @@
+## Kafka server start for ubuntu ## 
+
+    1. sudo -i
+
+    2. cd kafka_2.11-1.1.0
+
+    3. bin/zookeeper-server-start.sh config/zookeeper.properties &
+        
+    4. bin/kafka-server-start.sh config/server.properties &
+
+    ## Kafka listout current topics 
+
+    5. bin/kafka-topics.sh --list --zookeeper localhost:2181
+
+    ## Delete kafka Topic name
+
+    6. bin/kafka-topics.sh --zookeeper localhost:2181 --delete --topic "topic_name"
+
+
+## Ubuntu Network configuration 
+
+    1. sudo /sbin/route delete default
+
+    2. sudo /sbin/route add default gw 10.6.0.11
+
+
+## Code push GIT Cmds
+
+    1. git status 
+
+    2. git branch (verification)
+
+    3. git checkout -b "branch_name" (create new branch)
+
+    4. git add "files" (modifyed 0r created new files name)
+
+    5. git commit -m"reviewer comments"
+
+    6. git push origin "branch_name"
+
+    7. git pull origin "branch_name" (once reviewer approved this state)
+
+
+## Insert HTml content in mongodb  collection ref :
+
+    1. https://groups.google.com/forum/#!topic/mongodb-user/vw00sM1v5o4
+
+## exceution Python pyc file's remove comment
+
+    1. find . -name "*.pyc" -exec rm -f {} \;
+
+## ubuntu grep comments :
+
+    1. ps -aef | grep python
+
+
+## Running Process kill comment :
+
+    1. pkill -9 python
