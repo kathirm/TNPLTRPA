@@ -57,3 +57,7 @@
 ## Running Process kill comment :
 
     1. pkill -9 python
+
+## UiPath desktop application automation Example:
+
+    1. https://www.youtube.com/watch?v=lgiChrgzzoU
