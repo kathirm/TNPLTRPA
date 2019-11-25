@@ -61,3 +61,11 @@
 ## UiPath desktop application automation Example:
 
     1. https://www.youtube.com/watch?v=lgiChrgzzoU
+
+## Git Delete Last commit 
+
+    1. git reset HEAD^
+
+## Delete Previous Commits
+
+    1. git reset --hard HEAD~(prev id) Ex : git reset --hard HEAD~2
