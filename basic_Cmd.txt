@@ -69,3 +69,7 @@
 ## Delete Previous Commits
 
     1. git reset --hard HEAD~(prev id) Ex : git reset --hard HEAD~2
+
+## Katalon Extract-data from xlxs sheet and Fill autoamtically 
+
+    1. https://www.youtube.com/watch?v=naBpqjs4zho
