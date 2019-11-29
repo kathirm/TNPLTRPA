@@ -73,3 +73,8 @@
 ## Katalon Extract-data from xlxs sheet and Fill autoamtically 
 
     1. https://www.youtube.com/watch?v=naBpqjs4zho
+
+
+##Document Render
+
+    1. mvn test -Dtest=docgenunittests#convertTemplate -DinTemplateName="C://template//Terafast2.docx" -DoutTemplateName="C://template//Terafast3.docx"
