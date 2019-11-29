@@ -78,3 +78,8 @@
 ##Document Render
 
     1. mvn test -Dtest=docgenunittests#convertTemplate -DinTemplateName="C://template//Terafast2.docx" -DoutTemplateName="C://template//Terafast3.docx"
+
+
+##For generate document
+
+    1. mvn test -Dtest=GenerateDocTest#generateDoc -DjsonFile="C://template//jsonInputfile.json" -Dtemplate="C://template//Terafast3.docx" -DoutputDocName="C://template//outPutDocument.docx"
