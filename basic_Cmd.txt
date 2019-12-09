@@ -83,3 +83,9 @@
 ##For generate document
 
     1. mvn test -Dtest=GenerateDocTest#generateDoc -DjsonFile="C://template//jsonInputfile.json" -Dtemplate="C://template//Terafast3.docx" -DoutputDocName="C://template//outPutDocument.docx"
+
+
+
+## get-git config Username & mailId :
+
+    1. git config --list 
