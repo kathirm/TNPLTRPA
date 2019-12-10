@@ -1,11 +1,36 @@
 import json
 import xmlrpclib
 import requests
+import psycopg2
+from passlib.context import CryptContext
+
 
 portal_url = "http://10.6.7.85:8069"
 portal_db = "terafast" 
 admin_username = "mravi@terafastnet.com"
 admin_password = "abcd123"
+
+def connect_sqldb():
+    try:
+        conn = psycopg2.connect(database="terafast", user = "postgres", password = "abcd123", host = "10.6.7.85", port = "5432")
+        cur  = conn.cursor()
+    except Exception as e:
+        print("\n [WARNING] CONNECT POSTGRESQL DATABASE CONNECTION ERROR ::%s"%e)
+    
+    return conn 
+
+def reset_pwd(user_id):
+    try:
+       conn = connect_sqldb()
+       cur = conn.cursor()
+       newpass_crypt = CryptContext(['pbkdf2_sha512']).encrypt("newpass")
+       cur.execute("UPDATE res_users SET password = '"+newpass_crypt+"' WHERE id=%s"%(user_id))
+       conn.commit()
+       conn.close()
+       print("\n [INFO] PASSWORD FOR USERID :: %s HAS BEEN UPDATED SUCCESSFULLY"%user_id)
+
+    except Exception as er:
+        print("\n [WARNING] CREATED USERID :: %s  PASSWORD RESET FUNCTION ERROR ::%s"%(user_id, er))
 
 
 def create_internal_new_user(params):
@@ -31,6 +56,8 @@ def create_internal_new_user(params):
 
         if user_id is None:
             print("\n [WARNING] USERNAME or EMAIL ID IS ALREADY EXIST IN ODOO SERVER")
+        else:
+            reset_pwd(user_id)
 
     except Exception as er:
             print('\n [WARNING] CREATE NEW INTERNAL USER FUNCTION EXCEPTION ERROR :: %s'%er)
