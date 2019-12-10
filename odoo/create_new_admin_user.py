@@ -29,10 +29,10 @@ def create_external_user(params):
         }])
         print('\n [INFO] CREATE NEW USERNAME IN ODOO COMPLETED:: %s'%user_id)
 
-    except Exception as er:
         if user_id is None:
             print("\n [WARNING] USERNAME or EMAIL ID IS ALREADY EXIST IN ODOO SERVER")
-        else:
+
+    except Exception as er:
             print("\n [WARNING] Create new user function Exception :: %s"%er)
 
     return user_id

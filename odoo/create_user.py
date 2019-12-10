@@ -12,8 +12,8 @@ def create_internal_new_user(params):
     
     try:    
         user_id = None;
-        client_username = params.get('client_username')
-        client_name = params.get('client_name')
+        client_username = params.get('client_name')
+        client_name = params.get('client_username')
         client_password = params.get('client_password')
 
         common = xmlrpclib.ServerProxy('{}/xmlrpc/2/common'.format(portal_url))
@@ -29,10 +29,10 @@ def create_internal_new_user(params):
         }])
         print('\n [INFO] CREATE NEW USERNAME IN ODOO COMPLETED:: %s'%user_id)
 
-    except Exception as er:
         if user_id is None:
             print("\n [WARNING] USERNAME or EMAIL ID IS ALREADY EXIST IN ODOO SERVER")
-        else:
+
+    except Exception as er:
             print('\n [WARNING] CREATE NEW INTERNAL USER FUNCTION EXCEPTION ERROR :: %s'%er)
 
     return user_id
