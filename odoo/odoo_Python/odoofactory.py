@@ -26,6 +26,8 @@ class odooLibrary:
                         "client_username": "imkathir@yahoo.com"
                       }
         #self.create_admin_subUsers(self.params)
+
+        self.forgot_and_reset_pwd("mkathir@terafastnet.com")
         #self.create_new_admin_user(self.params)
     
     def connect_sqldb(self):
@@ -75,8 +77,7 @@ class odooLibrary:
             else:
                 resp = self.reset_user_pwd(user_id)
                 if resp is not None:
-                    email_notification(client_name, body = "Your Account has been activated shortly and your login password ::  
-                            %s<br><br> Thank you :)"%self.defaultpwd)
+                    email_notification(client_name, body = "Your Account has been activated shortly and your login password ::%s<br><br> Thank you :)"%self.defaultpwd)
                 else:
                     print("\n [WARNING] E-MAIL NOTIFICATION MAILID NOT FOUND PLEASE TRY AFTER SOME TIME.....")
                 
@@ -93,7 +94,7 @@ class odooLibrary:
             self.cur.execute("UPDATE res_users SET password = '"+newpass_crypt+"' WHERE id=%s"%(user_id))
             self.dbConnection.commit()
             self.dbConnection.close()
-            print("\n [INFO] PASSWORD FOR USERID :: %s HAS BEEN UPDATED SUCCESSFULLY"%user_id)
+            print("\n [SUCCESS] PASSWORD FOR USERID :: %s HAS BEEN UPDATED SUCCESSFULLY"%user_id)
 
         except Exception as er:
             print("\n [WARNING] CREATED USERID :: %s  PASSWORD RESET FUNCTION ERROR ::%s"%(user_id, er))
@@ -127,6 +128,26 @@ class odooLibrary:
 
         return user_id
 
+    def forgot_and_reset_pwd(self, usr_mail):
+        try:
+            rows = None;
+            self.cur.execute("SELECT * FROM res_users WHERE login = '%s'"%usr_mail)
+            rows = self.cur.fetchall()
+            if len(rows) == 0:
+                print("\n [WARNING] FORGOT PASSWORD EMAIL ID { %s } IS NOT FOUND"%usr_mail.upper())
+            for row in rows:
+                usr_id = row[0]
+                resp = self.reset_user_pwd(usr_id)
+                if resp is not None:
+                    email_notification(usr_mail, body = "Your Account has been activated shortly and your login password ::%s<br><br> Thank                                       you :)"%self.defaultpwd)
+                    print("\n [SUCCESS] YOUR FORGOT PASSWORD CHANGED PLEASE CHECK EMAIL ID :: %s"%usr_mail.upper()+'\n') 
+                else:
+                    print("\n [WARNING] FORGOT PASSWORD USER EMAIL ID NOT FOUND")
+
+        except Exception as er:
+            print("\n [WARNING] USER FORGOT PASSWORD EXCEPTION ERROR :: %s"%er)
+
+        return rows
 
 
 

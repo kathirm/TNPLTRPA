@@ -55,7 +55,7 @@ def email_notification(targets, body=None,attachment_file_path=None):
         server.login(username, password)
         server.sendmail(sender, targets, msg.as_string())
         server.quit()
-        print("\n [INFO] MAIL NOTIFICATION ALERT SEND SUCCESSFULLY :: %s"%targets)
+        print("\n [SUCCESS] MAIL NOTIFICATION ALERT SEND SUCCESSFULLY :: %s"%targets)
 
     except Exception as er:
         print("\n [WARNING] SEND EMAIL NOTIFICATIONE ALERT EXCEPTION :: %s"%er)
