@@ -27,7 +27,7 @@ class odooLibrary:
                       }
         #self.create_admin_subUsers(self.params)
 
-        #self.forgot_and_reset_pwd("mkathir@terafastnet.com")
+        self.forgot_and_reset_pwd("mkathir@terafastnet.com")
         #self.create_new_admin_user(self.params)
     
     def connect_sqldb(self):
@@ -48,8 +48,6 @@ class odooLibrary:
 
         except Exception as e:
             print("\n [WARNING] GET RECORDS FUNCTION EXCEPTION ERROR :: %s"%e)
-
-        return rows
 
 
     def create_admin_subUsers(self, params):
@@ -172,4 +170,4 @@ if __name__ == "__main__" :
     portal_port = config['portal']['poratal_port']
     portal_admin_name = config['portal']['admin_username']
 
-    #odooLibrary(dbIp, dbPort, dbUser_name, db_pwd, database_name, portal_port, portal_admin_name)
+    odooLibrary(dbIp, dbPort, dbUser_name, db_pwd, database_name, portal_port, portal_admin_name)

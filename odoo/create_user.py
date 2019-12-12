@@ -23,7 +23,7 @@ def reset_pwd(user_id):
     try:
        conn = connect_sqldb()
        cur = conn.cursor()
-       newpass_crypt = CryptContext(['pbkdf2_sha512']).encrypt("newpass")
+       newpass_crypt = CryptContext(['pbkdf2_sha512']).encrypt("abcd123")
        cur.execute("UPDATE res_users SET password = '"+newpass_crypt+"' WHERE id=%s"%(user_id))
        conn.commit()
        conn.close()
@@ -50,7 +50,15 @@ def create_internal_new_user(params):
             'login':client_name,
             'company_ids':[1],
             'company_id':1, 
-            'new_password': client_password
+            'new_password': client_password,
+
+
+
+
+
+
+
+
         }])
         print('\n [INFO] CREATE NEW USERNAME IN ODOO COMPLETED:: %s'%user_id)
 
