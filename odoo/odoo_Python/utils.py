@@ -9,7 +9,7 @@ from email.mime.application import MIMEApplication
 
 def read_config():
     try:
-        cfgFile = '/home/kathir/odoo_Python/odoomail.cfg'
+        cfgFile = '/etc/odoomail.cfg'
         config = ConfigParser()
         config.read(cfgFile)
         mailConfig = {}
@@ -55,7 +55,7 @@ def email_notification(targets, body=None,attachment_file_path=None):
         server.login(username, password)
         server.sendmail(sender, targets, msg.as_string())
         server.quit()
-        print("\n [SUCCESS] MAIL NOTIFICATION ALERT SEND SUCCESSFULLY :: %s"%targets)
+        print("\n [SUCCESS] MAIL NOTIFICATION ALERT SEND SUCCESSFULLY :: %s"%targets.upper()+'\n')
 
     except Exception as er:
         print("\n [WARNING] SEND EMAIL NOTIFICATIONE ALERT EXCEPTION :: %s"%er)

@@ -6,13 +6,13 @@ from passlib.context import CryptContext
 
 
 portal_url = "http://10.6.7.85:8069"
-portal_db = "terafast" 
-admin_username = "mravi@terafastnet.com"
+portal_db = "terafast1" 
+admin_username = "admin"
 admin_password = "abcd123"
 
 def connect_sqldb():
     try:
-        conn = psycopg2.connect(database="terafast", user = "postgres", password = "abcd123", host = "10.6.7.85", port = "5432")
+        conn = psycopg2.connect(database="terafast1", user = "postgres", password = "abcd123", host = "10.6.7.85", port = "5432")
         cur  = conn.cursor()
     except Exception as e:
         print("\n [WARNING] CONNECT POSTGRESQL DATABASE CONNECTION ERROR ::%s"%e)
@@ -51,13 +51,6 @@ def create_internal_new_user(params):
             'company_ids':[1],
             'company_id':1, 
             'new_password': client_password,
-
-
-
-
-
-
-
 
         }])
         print('\n [INFO] CREATE NEW USERNAME IN ODOO COMPLETED:: %s'%user_id)

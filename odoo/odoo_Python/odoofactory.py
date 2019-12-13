@@ -1,10 +1,12 @@
-import json, os, sys
+import json, os, sys, time
 from configparser import ConfigParser
 import xmlrpclib
 import requests
 import psycopg2
 from passlib.context import CryptContext
 from utils import *
+import erppeek #createDatabase py-module
+import postgreLib 
 
 class odooLibrary:
 
@@ -18,6 +20,8 @@ class odooLibrary:
         self.portal_port = portal_port;
         self.admin_name  = admin_name;
         self.defaultpwd = "abcd123" 
+        self.connection = None;
+        self.connect = None;
         self.dbConnection = self.connect_sqldb()
         self.portal_url = "http://%s:%s"%(dbIp, portal_port)
         self.params  = {
@@ -26,7 +30,8 @@ class odooLibrary:
                         "client_username": "imkathir@yahoo.com"
                       }
         #self.create_admin_subUsers(self.params)
-
+        self.create_user_database()
+        self.get_newDatabase_admin_id("TERAFASTWORKS")
         #self.forgot_and_reset_pwd("mkathir@terafastnet.com")
         #self.create_new_admin_user(self.params)
     
@@ -52,8 +57,8 @@ class odooLibrary:
         return rows
 
 
-    def create_admin_subUsers(self, params):
-        try:
+    def create_admin_subUsers(self, database, params):
+        try:            
             user_id = None;
             if params is None:
                 print("\n [WARNING] INPUT PARAMS VALUE IS NONE PLEASE TRY AGAIN...")
@@ -62,10 +67,10 @@ class odooLibrary:
             client_password = params.get('client_password')
 
             common = xmlrpclib.ServerProxy('{}/xmlrpc/2/common'.format(self.portal_url))
-            uid = common.authenticate(self.dbName, self.admin_name, self.dbpwd, {})
+            uid = common.authenticate(database, 'admin', self.dbpwd, {})
             models = xmlrpclib.ServerProxy('{}/xmlrpc/2/object'.format(self.portal_url))
 
-            user_id = models.execute_kw(self.dbName, uid, self.dbpwd, 'res.users', 'create', [{
+            user_id = models.execute_kw(database, uid, self.dbpwd, 'res.users', 'create', [{
                 'name': client_username,
                 'login':client_name,
                 'company_ids':[1],
@@ -81,9 +86,7 @@ class odooLibrary:
                 if resp is not None:
                     email_notification(client_name, body = "Your Account has been activated shortly and your login password ::%s<br><br> Thank you :)"%self.defaultpwd)
                 else:
-                    print("\n [WARNING] E-MAIL NOTIFICATION MAILID NOT FOUND PLEASE TRY AFTER SOME TIME.....")
-                
-
+                    print("\n [WARNING] E-MAIL NOTIFICATION MAILID NOT FOUND PLEASE TRY AFTER SOME TIME.....")                
         except Exception as er:
             print('\n [WARNING] CREATE NEW INTERNAL USER FUNCTION EXCEPTION ERROR :: %s'%er)
 
@@ -93,10 +96,11 @@ class odooLibrary:
         try:
             newpass_crypt = None;
             newpass_crypt = CryptContext(['pbkdf2_sha512']).encrypt(self.defaultpwd)
-            self.cur.execute("UPDATE res_users SET password = '"+newpass_crypt+"' WHERE id=%s"%(user_id))
-            self.dbConnection.commit()
-            self.dbConnection.close()
-            print("\n [SUCCESS] PASSWORD FOR USERID :: %s HAS BEEN UPDATED SUCCESSFULLY"%user_id)
+            self.reset_cur = self.connect.cursor()
+            self.reset_cur.execute("UPDATE res_users SET password = '"+newpass_crypt+"' WHERE id=%s"%(user_id))
+            self.connect.commit()
+            self.connect.close()
+            print("\n [SUCCESS] PASSWORD TO USERID :: %s HAS BEEN UPDATED SUCCESSFULLY"%user_id)
 
         except Exception as er:
             print("\n [WARNING] CREATED USERID :: %s  PASSWORD RESET FUNCTION ERROR ::%s"%(user_id, er))
@@ -152,10 +156,55 @@ class odooLibrary:
         return rows
 
 
+    def create_user_database(self, params=None):
+        try:
+            DATABASE = "TERAFASTWORKS"
+            print("\n [INFO] CREATE DATABASE INPUT PARAMS VALUE :: %s"%params+'\n')
+            client = erppeek.Client(server = self.portal_url)
+
+            if not DATABASE in client.db.list():
+                print("\n [INFO] THE DATABASE DOES NOT EXIST YET CREATING NEW ONE..!!")
+                client.create_database(self.dbpwd, DATABASE)
+                print("\n [SUCCESS] NEW DATABASE " + DATABASE +" CREATED IN ODOO SERVER")
+                print("\n [WAITING] YOUR DATABASE " + DATABASE + " CONFIGURATION IN-PROGRESS \n PLEASE WAIT...")
+                time.sleep(10)
+            else:
+                print("\n [WARNING] THE DATABASE " + DATABASE + " ALREADY EXISTS")
+
+        except Exception as er:
+            print("\n [WARNING] CREATE NEW-USER DATABASE FUNCTION EXCEPTION :: %s"%er+'\n')
+
+        return client
+
+    def get_newDatabase_admin_id(self, database):
+        try:
+            user_id = None;
+            self.connection  = postgreLib.postgreLib(self.dbIp, self.dbPort, self.dbusername, self.dbpwd, database)
+            self.connect = self.connection.connect_postgreSQL()
+            self.connLink = self.connect.cursor()
+            
+            self.connLink.execute("SELECT * FROM res_users WHERE login='admin'")
+            rows = self.connLink.fetchall()
+            for row in rows:
+                user_id = row[0]
+            print("\n [SUCCESS] CURRENT DATABASE NAME : "+ database + " & ADMIN USER ID :: %s"%user_id)
+
+            if user_id is None:
+                print("\n [WARNING] ADMIN USER NAME NOT FOUND IN CURRENT DATABASE " + database +" TRY AFTER SOMETIME")
+            else:
+                self.connection.reset_admin_pwd(self.connect, user_id)   
+
+                self.create_admin_subUsers(database, self.params)
+        except Exception as er:
+            print("\n [WARNING] CREATED NEW DATABASE " +database+ "FUNCTION EXCEPTION :: %s"%er)
+
+        return user_id
+
+
 
 if __name__ == "__main__" :
 
-    cfgFile = '/home/kathir/odoo_Python/odoo.cfg'
+    cfgFile = '/etc/odoo.cfg'
     config = ConfigParser()
     config.read(cfgFile)
     
@@ -172,4 +221,4 @@ if __name__ == "__main__" :
     portal_port = config['portal']['poratal_port']
     portal_admin_name = config['portal']['admin_username']
 
-    #odooLibrary(dbIp, dbPort, dbUser_name, db_pwd, database_name, portal_port, portal_admin_name)
+    odooLibrary(dbIp, dbPort, dbUser_name, db_pwd, database_name, portal_port, portal_admin_name)
