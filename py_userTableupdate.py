@@ -28,17 +28,19 @@ def getusers(token, tenantName):
         genURl = "http://controller:8080/users?&role=Employee"
         resp = requests.get(genURl, headers = headers)
         data = json.loads(resp.text)
-        
+
         usr_dict = {}
         for usr in data: 
             _id =  usr.get("id")
-            usr_dict["authTypes"] = ["sms_otp", "password"]
-            usr_dict["blockCheckout"] = "false"
+            usr_dict["authTypes"] = ["blocked"]
+            usr_dict["blockCheckout"] = "true"
+            usr_dict["password"] = "blocked"
             genUr = "http://controller:8080/users/%s"%_id
             resp = requests.patch(genUr, headers=headers, data=json.dumps(usr_dict))
+            print resp.text
             if resp.status_code >= 200 and resp.status_code < 300:
                 print "User New Fields Updated Successfull Resp :: %s"%resp
-            elif response.status_code >= 400:
+            elif resp.status_code >= 400:
                 print "User New Fields Updated Failed"
             else:
                 print "Invalid Response COde"

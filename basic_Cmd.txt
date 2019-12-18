@@ -89,3 +89,14 @@
 ## get-git config Username & mailId :
 
     1. git config --list 
+
+
+##ODOO Start
+
+    1. sudo service odoo start
+
+##ODOO POSTGRESQL START
+
+    1. sudo /etc/init.d/postgresql restart
+
+

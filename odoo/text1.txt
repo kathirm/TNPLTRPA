@@ -1,0 +1,1 @@
+INSERT INTO testquetest (customerName, databaseName, customerPwd, productType, totalAmount, CardNumber, cardHolderName, expiredMonth, expiredYear, cardCVV, customerEmail) VALUES ('TerafastNetworks', 'TerafastNetworks', 'XXXXXX', 'XXX', '1200', '123454678910', 'TerafastAdmin', 'Aug', '2021', '333', 'terafastnetworks@terafastnet.com')
