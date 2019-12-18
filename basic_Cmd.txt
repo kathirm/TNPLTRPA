@@ -99,4 +99,19 @@
 
     1. sudo /etc/init.d/postgresql restart
 
+##POSTGRESQL EPOSE DOCKER
+
+    1. export DATABASE_USER=postgres \
+    2. export DATABASE_PASSWORD=secret \
+    3. export DATABASE_HOST=localhost \
+    4. export DATABASE_PORT=5432 \
+    5. export DATABASE_DB=demo
+
+    6. docker run --name POSTGRES_USER -p "$DATABASE_PORT":"$DATABASE_PORT"  \
+    7. -e POSTGRES_PASSWORD="$DATABASE_PASSWORD"  \
+    8. -e POSTGRES_USER="$DATABASE_USER"  \
+    9. -e POSTGRES_DB="$DATABASE_DB" \
+    10. -d postgres:9.1
+
+
 
