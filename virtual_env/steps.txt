@@ -1,0 +1,22 @@
+
+    !--------Create virtual environment and Save Install modules as requirement.txt file--------!
+    
+
+
+    1. python3 -m pip install --user virtualenv
+
+    2. python3 -m venv env
+
+    3. source env/bin/activate
+
+    4. which python  #Python+path
+
+    5. pip install requests==2.18.4
+
+    6. pip freeze
+
+    7. pip freeze > requirements.txt   #Save_installed python modules
+
+
+
+    !-------------------------------Thank You--------------------------------------------------------!
