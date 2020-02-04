@@ -1,0 +1,29 @@
+[
+
+    {
+        "crm": {
+            "sel_groups_13_14_15" : 13,
+            "sel_groups_25_29"    : 29
+        },
+        "hr": {
+            "sel_groups_39_43"    : 43,
+            "sel_groups_47_48_49" : 49,
+            "sel_groups_26_27"    : 27,
+            "sel_groups_13_14"    : 14,
+            "sel_groups_38"       : 38,
+            "sel_groups_22_23"    : 23,
+            "sel_groups_28_29"    : 29,
+            "sel_groups_17_15_16" : 16,
+            "sel_groups_20_21"    : 21,
+            "sel_groups_24_25"    : 25
+        },
+        "wms": {
+            "sel_groups_34_38"    : 38,
+            "sel_groups_31_32_33" : 33,
+            "sel_groups_21_22"    : 21,
+            "sel_groups_49_50"    : 49,
+            "sel_groups_40_41"    : 40,
+            "sel_groups_50_51"    : 50
+        }
+    }
+]

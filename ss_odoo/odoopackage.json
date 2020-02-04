@@ -1,0 +1,5 @@
+[{
+"crm" : ["crm", "sale_management"],
+"wms" : ["stock", "sale_management", "purchase", "contacts"],
+"hr" : ["hr_attendance", "website_slides", "website", "hr_holidays", "survey", "lunch", "hr_recruitment", "hr_expense"]
+}]

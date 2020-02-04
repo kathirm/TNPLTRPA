@@ -1,0 +1,414 @@
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="./img/spinner.css">
+    <title>Odoo Self-Service</title>
+    <link rel="icon" type="image/png" href="./img/title_logo.png" sizes="16x16">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+     <script type="text/javascript" src="./img/screen1.js"></script>
+  
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+    {% if err %}
+    <h5 style="color:red"><img src="./img/new.gif" width="5%" height="5%"><strong>Alert Message:</strong></h5>
+    <h4 style="color:green"> {{ err }}</h4>
+    {% endif %}
+    <div class="container">
+        <form action="payment" enctype='application/json' method="POST">
+        <div>
+            <img src="./img/storaze logopng.png" alt="">
+        </div>
+        <div style="text-align: right;">Select Language:
+            <div id="google_translate_element"></div>
+            <script type="text/javascript">
+                function googleTranslateElementInit() {
+                    new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+                     }
+            </script>
+        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        </div>
+       
+    <div class="row no-gutters m-3 justify-content-around" >
+        
+        <div class="col-sm-7  rounded p-4" >
+            <div class="row no-gutters">
+            <div class="col-sm-12 align-self-center rounded p-4" style="background-color:#eeeeee;">
+                <div class="row no-gutters">
+                    <div class="col-sm-9">
+                        <div class="row no-gutters">
+                            <div class="col-sm-12">
+                             <a href="/login"> <u style="color: #2a81b6;">Quick purchase use your data already registered at </u> </a>  
+                            </div>
+                            <div class="col-sm-12 mt-2">
+                                With just 2 clicks you can safely complete your purchase
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 text-center">
+                        <img src="img/lock logo.jpg" style="height: 50px; width: 50px;">
+                    </div>
+                </div>
+            </div>
+           
+            <div class="col-sm-12 align-self-center rounded p-4 mt-3" style="background-color:#eeeeee;">
+                <h3>Form of payment</h3>
+                <br>
+                <div>
+                   <input type="radio" name="Creditcard" id="credit" required value="credit" onchange="cardselection(event)">&nbsp;Credit card
+                </div>
+                <br>
+                <div>
+                Select your card's flag
+                </div>
+                <div class="row no-gutters">
+                    <div class="col-sm-12"></div>
+                    <div class="col-sm-12 text-center">
+                        <div class="row no-gutters">
+                            <div class="col-sm-3">
+                                <div class="row no-gutters">
+                                    <div class="col-sm-6">
+                                        <div class="row">
+                                            <div class="col-sm-12 text-center">
+                                                 <img src="./img/visacard.png">
+                                            </div>
+                                            <div class="col-sm-12 text-center">
+                                                <input type="radio" name="paymentcard" value="visa" required onclick="cardselection(event)">
+                                           </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="row">
+                                            <div class="col-sm-12 text-center">
+                                                 <img src="./img/mastercard.png">
+                                            </div>
+                                            <div class="col-sm-12 text-center">
+                                                <input type="radio" name="paymentcard" value="master" onclick="cardselection(event)">
+                                           </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="row no-gutters">
+                                    <div class="col-sm-6">
+                                        <div class="row">
+                                            <div class="col-sm-12 text-center">
+                                                 <img src="./img/americanexpress.png">
+                                            </div>
+                                            <div class="col-sm-12 text-center">
+                                                <input type="radio" name="paymentcard" value="xpress" required onclick="cardselection(event)">
+                                           </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="row">
+                                            <div class="col-sm-12 text-center">
+                                                 <img src="./img/diners_club.png">
+                                            </div>
+                                            <div class="col-sm-12 text-center">
+                                                <input type="radio" name="paymentcard" value="diners" required onclick="cardselection(event)">
+                                           </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="row no-gutters">
+                                    <div class="col-sm-6">
+                                        <div class="row">
+                                            <div class="col-sm-12 text-center">
+                                                 <img src="./img/elo.png">
+                                            </div>
+                                            <div class="col-sm-12 text-center">
+                                                <input type="radio" name="paymentcard" value="elocard" required onclick="cardselection(event)">
+                                           </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="row">
+                                            <div class="col-sm-12 text-center">
+                                                 <img src="./img/aura.png">
+                                            </div>
+                                            <div class="col-sm-12 text-center">
+                                                <input type="radio" name="paymentcard" value="aura" required onclick="cardselection(event)">
+                                           </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="row no-gutters">
+                                    <div class="col-sm-6">
+                                        <div class="row">
+                                            <div class="col-sm-12 text-center">
+                                                 <img src="./img/jcb.png">
+                                            </div>
+                                            <div class="col-sm-12 text-center">
+                                                <input type="radio" name="paymentcard" value="jcb" required onclick="cardselection(event)">
+                                           </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="row">
+                                            <div class="col-sm-12 text-center">
+                                                 <img src="./img/discover.png">
+                                            </div>
+                                            <div class="col-sm-12 text-center">
+                                                <input type="radio" name="paymentcard" value="discover" required onclick="cardselection(event)">
+                                           </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 mt-3">
+                        <div class="row">
+                            <div class="col-sm-6 text-left">Card number</div>
+                                <div class="col-sm-6 text-left">Validate date</div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-sm-6 mt-2"> <input class="form-control" id="cardnumber" onchange="cardselection(event)" name="CardNumber" style="font-size:small;" type="text" maxlength="16" onkeypress=" return isNumber(event)" required></div>
+                            <div class="col-sm-6 mt-2"> 
+                                <style>
+                                    .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+                                            width: 100%!important;
+                                        }
+                                     .yearselect .dropdown-toggle.btn-light{
+                                         padding: 3.2px;
+                                     }   
+                                     .dropdown.bootstrap-select.yearselect.dropup.show .dropdown-menu.show{
+                                        min-width: 100%!important;
+                                    }
+                                    .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn).yearselect.show .dropdown-menu.show{
+                                         min-width: 100%!important;
+                                     }
+                                </style>
+                                <div class="row no-gutters">
+                                        <div class="col-sm-5">
+                                            <select required class="selectpicker yearselect" style="font-size:small;" id="mnthdrop" name="expiredMonth" onchange="cardselection(event)">
+                                                <option value=""> Month </option>
+                                             </select>
+                                        </div>
+                                        <div class="col-sm-2 text-center mt-1">/</div>
+                                        <div class="col-sm-5" id="yearDropdown">
+                                            <select required class="selectpicker yearselect" style="font-size:small;" id="yrdrop" name="expiredYear" onchange="cardselection(event)">
+                                                <option value=""> Year </option>
+                                             </select>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 mt-3">
+                        <div class="row no-gutters">
+                            <div class="col-sm-8">Name of Cardholder (as it appears on the card)</div>
+                            <div class="col-sm-4 text-left">Security code</div>    
+                        </div>
+                        <div class="row no-gutters">
+                            <div class="col-sm-8"> <input name="cardholder" class="form-control" style="font-size: small; width: 95%;" id="nameofcardholder" name="cardHolderName" type="text" required onchange="cardselection(event)"></div>
+                            <div class="col-sm-2"> <input class="form-control " style="font-size: small; width: 95%;" id="securitycode" name="cardCVV"  onchange="cardselection(event)" type="text" onkeypress=" return isNumber(event)" required></div>
+                            <div class="col-sm-2 text-center mt-2" style="font-size: small;">
+                                
+                                <input type="checkbox" key="1"/>
+                                <input type="hidden" name="Recurring[1]" value="false">
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="Recurrence billing transaction every month">Recurring</a> 
+                            
+                            </div>
+                            </div>
+                    </div>
+                    <div class="col-sm-12 mt-3">
+                        <div class="row no-gutters">
+                            <div class="col-sm-7 text-left">
+                                <div>Install in</div>
+                                <select  multiple  onchange="totalIt(event)" class="selectpicker yearselect" style="font-size:small;" required name="productType" >
+                                    <!-- <option selected>Product</option> -->
+                                    <option value="crm">CRM</option>
+                                    <option value="wms">WMS</option>
+                                    <option value="hr">HR</option>
+                                </select>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <div class="col-sm-12 mt-3">
+
+                    </div>
+
+                </div>
+               
+  
+                
+                    <div class="row">
+                        <div class="dropdown col-sm-6">
+                          </div>
+                    </div>
+                    Zip code
+                    <div class="row">
+                        <div class="col-sm-3"> <input class="form-control" style="font-size: small;" id="zipcode" name="zipcode" type="text" maxlength="10" onkeypress=" return isNumber(event)" required onchange="cardselection(event)"></div><u style="color: #2a81b6;">Get the zip code</u>
+                    </div>
+                </div>
+                
+                <div class="col-sm-12 align-self-center rounded p-4 mt-3" style="background-color:#eeeeee;">
+                <h3>My data</h3>
+                <br>
+                <div class="row">
+                    <div class="col-sm-8">Full name</div>
+                    <div class="col-sm-4">CPF / CNPJ</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8"><input class="form-control" style="font-size: small;" onchange="cardselection(event)" id="fullname" name="fullname" type="text" required></div>
+                    <div class="col-sm-4"><input class="form-control" style="font-size: small;" onchange="cardselection(event)" id="cnpj" name="cnpj" type="text" maxlength="18" onkeypress=" return isNumber(event)" required></div>
+                </div>
+                <br>
+                <div class="row">
+                    
+                    <div class="col-sm-6"><label for="validationCustom01">Email</label></div>
+                    <div class="col-sm-6"><label for="validationCustom01">Confirm your E-mail</label></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6"><input class="form-control" style="font-size: small;" onchange="cardselection(event)" id="mailvalidate" name="customerEmail" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required></div>
+                    <div class="col-sm-6"><input class="form-control" style="font-size: small;" onchange="cardselection(event)" id="confirmmailvalidate" name="confirm customerEmail" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required></div>
+                   
+                </div>
+                </div>
+            </div>
+            <br>
+        </div>
+
+        <!-- //Total Cart -->
+
+        <div class="col-sm-4 mt-4"> 
+            <div class="row no-gutters">
+                <div class="col-sm-12" style="background-color:#eeeeee;">
+                    <div class="p-2" style="background-color:#def0f6;height: 40px;">
+                        <h5>Your Shopping Cart</h5>
+                    </div>  
+                    <div class="row no-gutters">
+                        <div class="col-sm-4 m-4 ">Product</div>
+                        <div class="col-sm-1 m-4">Qty.</div>
+                        <div class="col-sm-2 m-4">Price</div>
+                    </div>
+                    <hr style = "border-top: 1px dashed black;width: 80%;"/>
+                    <div class="row no-gutters justify-content-center">
+                        <div class="col-sm-10 p-2 " > 
+                            <div class="row no-gutters" style="background-color:#def0f6;" id="orderProduct">
+                                <!-- <div class="col-sm-6"><label id="prototal"></label> </div>
+                                <div class="col-sm-1 text-right">1</div>
+
+                                <div class="col-sm-5 text-right"><input type="text" style="width: 72%;text-align: center;" id="total" value="0.00" readonly="readonly"></div> -->
+                            </div> 
+                            <br>
+                            <hr style = "border-top: 1px dashed black;width: 102%;"/>
+                            <div class="row p-2 no-gutters">
+                                <div class="col-sm-8 text-left">Subtotal of items:</div>
+                                <div class="col-sm-4 text-right"><input type="text" style="width: 90%;text-align: center;" onchange="cardselection(event)" id="box2" readonly required></div>  
+                            </div>                          
+                        </div>
+                    </div>
+                    <div class="" style="background-color:#def0f6;height: 80px;">
+                    <hr style = "border-top: 1px dashed black;width: 100%;"/>
+                    <div class="row p-2 no-gutters">
+                        <div class="col-sm-7 ml-4"><h6 style="color: #096eab;">Total purchase amount:</h6></div>
+                        <div class="col-sm-4"><input type="text" style="width: 90%;text-align: center;" onchange="cardselection(event)" id="totalresult" name="totalAmount" readonly ></div>
+                    </div>
+                    
+                    </div>
+                </div>
+            </div>  
+            <div class="row">
+             <div class="col-sm-10 text-right" style="margin-left:70px">
+                <br>
+                <button class="btn btn-primary" type="submit" value="submit" onclick="submitForm()">Payment</button>
+             </div>
+             <div id="overlay" style="display:none;">
+                 <div class="loader" id="spner"></div>
+                 <!-- <div class="spinner"></div> -->
+                 <br/>
+                 <h6 style="color:black;">Please wait & don't refresh this page or go back...</h6>
+                 <br>
+                 <h6 style="color:midnightblue"><b>Automatically we will redirect to your login page</b></h6>
+             </div> 
+            </div>  
+        </div>
+            
+           
+         </div>
+            
+        </form> 
+    </div>
+    
+         <script>
+                  function submitForm() {
+                  var frm = document.getElementsByName('contact-form')[0];
+                  spin= true;
+                  loadspinner();
+                  frm.submit(); 
+                  frm.reset(); 
+                  return false; 
+                  }
+
+                $('#yrdrop').each(function() {
+
+                    var year = (new Date()).getFullYear();
+                    //var current = year;
+                    for (var i = 0; i < 15; i++) {
+                        //if ((year+i) == current)
+                        //    $(this).append('<option selected value="' + (year + i) + '">' + (year + i) + '</option>');
+                        //else
+                            $(this).append('<option value="' + (year + i) + '">' + (year + i) + '</option>');
+                    }
+
+                })
+
+                function month(){
+                
+                for(var x = 1; x <=12; x++) {
+                    var optn = document.createElement("OPTION");
+                    optn.text = x.toString();
+                    optn.value = x.toString();
+                document.getElementById("mnthdrop").appendChild(optn);      
+                }
+                } month();
+
+                    $(function () {
+                    $('.yearselect').selectpicker();
+                    });
+
+                $(document).ready(function () {
+                    $('[key]').change(function () {
+                        var key = $(this).attr('key');
+                        $($('[name="Recurring[' + key + ']"]')).val($(this).is(':checked') ? 'true' : 'false');
+                    });
+                });
+var spin= false;
+document.getElementById("spner").style.display = "none";
+function loadspinner() {
+    if(spin){
+        document.getElementById("spner").style.display = "block";
+        setTimeout(function(){
+            document.getElementById("spner").style.display = "none";
+            spin = false;
+        },$('#overlay').fadeIn().delay(5000).fadeOut());
+    }
+}
+         </script>
+  
+</body>
+</html>

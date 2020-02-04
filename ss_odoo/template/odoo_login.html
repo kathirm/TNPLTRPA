@@ -1,0 +1,285 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Odoo Self-Service</title>
+    <link rel="icon" type="image/png" href="./img/title_logo.png" sizes="16x16">
+    <link rel="stylesheet" type="text/css" href="screen css.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</head>
+<body>
+    {% if err %}
+    <h5 style="color:red"><img src="./img/new.gif" width="5%" height="5%"><strong>Alert Message:</strong></h5>
+    <h4 style="color:green"> {{ err }}</h4>  
+    {% endif %}
+
+    <div class="container">
+        <div>
+            <img src='./img/storaze logopng.png'>
+        </div>
+        <div style="text-align: right;">Select Language:
+        <div id="google_translate_element"></div>
+        <script type="text/javascript">
+            function googleTranslateElementInit() {
+                new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+            }
+        </script>
+        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>  
+        </div>
+        
+        <div class="row mt-4 no-gutters">
+            <div class="col-sm-12 align-self-center rounded p-4" style="background-color:#eeeeee;">
+                        <div class="row">
+                        <div class="col-sm-12">  Buy faster with</div>
+                            
+                       <div class="col-sm-3">
+                        <img src="./img/chckout.png" alt=""></div>
+                        <div class="col-sm-1">or</div>
+                        
+                        <div class="col-sm-3"><img src="./img/storaze link button.png" alt=""></div>
+
+                    <div class="col-sm-3"><a href="/validateUser"><img src="./img/newuser.png" width="37px"></a>New user</div>
+                       </div>
+                    
+                </div>
+            </div>
+       
+
+        <div class="row mt-3 no-gutters ">
+            <div class="col-sm-12 align-self-center rounded p-4" style="background-color:#eeeeee;">
+                <form class="form-signin" action="/odoologin" method="post">
+                        <h5>Login</h5>
+                        <div>Please enter your details to complete the comparison.</div>
+                        <br>
+                        <div class="row no-gutters">
+                            <div class="col-sm-6">E-mail</div>
+                            <div class="col-sm-3">Password</div>
+                        <div class="col-sm-6">
+                            <input type="email" name="email" id="email" placeholder="E-mail" class="form-control" style="width: 90%;" required>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="password" name="password" id="password" placeholder="Password" class="form-control" required>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row no-gutters">
+                        <div class="col-sm-9 text-right">
+                            <button style="background-color: #00aeef;color: white;">Continue</button>
+                        </div>
+                    </div>
+                    <!--<div class="row no-gutters">
+                        <div class="ali"> 
+                            <a href="">New User SignUp</a>
+                         </div>
+                    </div>-->
+               </form>
+            </div>
+        </div>
+        <div>
+           <div class="row mt-3">
+            <div class="col-sm-12">
+
+                <!--
+ <div class="row no-gutters">
+     <div class="col-sm-12 align-self-center rounded p-4" style="background-color:#eeeeee;">
+        <h5>Form of payment</h5>
+        <div class="row no-gutters">
+           <div class="col-sm-3">
+            <input type="radio" name="cardtype">&nbsp;Credit card
+           </div> <div class="col-sm-3">
+            <input type="radio" name="cardtype">&nbsp;Debit card
+           </div> <div class="col-sm-3">
+            <input type="radio" name="cardtype">&nbsp;Online debit (10% Discount)
+           </div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-sm-10">
+                <input type="radio" name="cardtype">&nbsp;Boleto Bancario (10% Discount)
+            </div>
+        </div>
+        <br>
+        <div class="row no-gutters">
+            <div class="col-sm-10">
+                <div>
+                    Select the flag of your credit card
+                </div>
+            </div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-sm-11">
+                <div class="row no-gutters">
+                    <div class="col-sm-3">
+                        <div class="row no-gutters">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-sm-12 text-center">
+                                         <img src="./img/visacard.png">
+                                    </div>
+                                    <div class="col-sm-12 text-center">
+                                        <input type="radio" name="paymentcard">
+                                   </div>
+                                </div>
+                                
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-sm-12 text-center">
+                                         <img src="./img/mastercard.png">
+                                    </div>
+                                    go.png
+                                    <div class="col-sm-12 text-center">
+                                        <input type="radio" name="paymentcard">
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="row no-gutters">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-sm-12 text-center">
+                                         <img src="./img/americanexpress.png">
+                                    </div>
+                                    <div class="col-sm-12 text-center">
+                                        <input type="radio" name="paymentcard">
+                                   </div>
+                                </div>
+                                
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-sm-12 text-center">
+                                         <img src="./img/diners_club.png">
+                                    </div>
+                                    <div class="col-sm-12 text-center">
+                                        <input type="radio" name="paymentcard">
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="row no-gutters">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-sm-12 text-center">
+                                         <img src="./img/elo.png">
+                                    </div>
+                                    <div class="col-sm-12 text-center">
+                                        <input type="radio" name="paymentcard">
+                                   </div>
+                                </div>
+                                
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-sm-12 text-center">
+                                         <img src="./img/aura.png">
+                                    </div>
+                                    <div class="col-sm-12 text-center">
+                                        <input type="radio" name="paymentcard">
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="row no-gutters">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-sm-12 text-center">
+                                         <img src="./img/jcb.png">
+                                    </div>
+                                    <div class="col-sm-12 text-center">
+                                        <input type="radio" name="paymentcard">
+                                   </div>
+                                </div>
+                                
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-sm-12 text-center">
+                                         <img src="./img/discover.png">
+                                    </div>
+                                    <div class="col-sm-12 text-center">
+                                        <input type="radio" name="paymentcard">
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+<div class="col-sm-12">
+    <div class="row">
+        <div class="col-sm-6 text-left">Card number</div>
+            <div class="col-sm-6 text-left">Validate</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 mt-2"> <input class="form-control" id="inputdefault" style="font-size:x-small;" type="number"></div>
+        <div class="col-sm-6 mt-2"> 
+            <div class="row no-gutters">
+                    <div class="col-sm-4">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" style="font-size:x-small;background-color:white;border-color:white;color: black;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Dropdown
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">A</a>
+                            <a class="dropdown-item" href="#">B</a>
+                            <a class="dropdown-item" href="#">C</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" style="font-size:x-small;background-color:white;border-color:white;color: black;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Dropdown
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">A</a>
+                            <a class="dropdown-item" href="#">B</a>
+                            <a class="dropdown-item" href="#">C</a>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+        </div>
+        <br>
+        <div class="row no-gutters">
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-6 text-left">Name of the cardholder (as engraved on the card)</div>
+                        <div class="col-sm-3 text-left">Security code</div>
+                </div>
+                <div class="row no-gutters">
+                    <div class="col-sm-6">
+                        <input class="form-control"  type="number" style="font-size:x-small; width: 90%;" >
+                    </div>
+                    <div class="col-sm-3">
+                        <input class="form-control" type="number" style="font-size:x-small;width: 90%;" >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+            </div>
+
+           </div>
+    
+        </div>
+    </div>  -->
+</body>
+</html>
