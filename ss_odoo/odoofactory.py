@@ -171,7 +171,7 @@ class odooLibrary:
                     update_pwd = self.connection.reset_admin_pwd(self.connect, user_id)
                     if update_pwd is not None:
                         self.create_usrInfoTable(params)
-                        email_notification(client_name, body = "Your Account has been activated shortly and your login password ::%s<br><br> Thank you :)"%self.defaultpwd)
+                        email_notification(client_name, body = "Dear Customer <br><br> we are proudly welcome to You <br><br> Your Account has been created succesfully your login Credentials <b><br> user name : %s <br> Password : %s <br></b><br><br> Thanks & Regards<br>STORAZE Support Team"%(client_name, self.defaultpwd))
                     else:
                         logging.warning("[WARNING] E-MAIL NOTIFICATION MAILID NOT FOUND PLEASE TRY AFTER SOME TIME.....")
 
@@ -179,6 +179,12 @@ class odooLibrary:
             logging.warning('[WARNING] CREATE NEW INTERNAL USER FUNCTION EXCEPTION ERROR :: %s'%er)
 
         return user_id
+
+    def sendFeedbackMail(self, params):
+        try:  
+            email_notification("mkathir@terafastnet.com", body="Hello  Postmaster </br></br> You have Received one New Feedback Message <br></br> Client Name :: %s <br> Client Company : %s <br> Customer mail-ID : %s <br> Customer Phone Number : %s <br> Message : %s  <br> </br> Thanks & Regards <br> support Team"%(params.get("custName"), params.get("custCompany"), params.get("custEmailAdd"), params.get("custPhone"), params.get("custmsg")))
+        except Exception as er:
+            print("SEND CUSTOMER FEEDBACK MAIL NOTIFICATION EXCEPTION :: %s"%er)
 
 
     def dependancy_package_install_modules(self, params):

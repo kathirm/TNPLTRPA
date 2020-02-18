@@ -27,19 +27,30 @@
     {% endif %}
     <div class="container">
         <form action="payment" enctype='application/json' method="POST">
-        <div>
+    <!--    <div>
             <img src="./img/storaze logopng.png" alt="">
-        </div>
-        <div style="text-align: right;">Select Language:
-            <div id="google_translate_element"></div>
-            <script type="text/javascript">
-                function googleTranslateElementInit() {
-                    new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-                     }
-            </script>
-        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-        </div>
-       
+		<a class="navbar-brand" href="#"><img src="./img/storaze logo.png" alt="logo_img" style="width: 11%; margin-left: 6%;" ></a>
+        </div>-->
+<nav class="navbar navbar-expand-lg navbar-light p-0">
+<a class="navbar-brand"><img src="./img/storaze logo.png" alt="logo_img" style="width: 11%; margin-left: 6%;" ></a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+<ul class="navbar-nav mr-auto">
+<li class="nav-item">
+<div id="google_translate_element">
+<script type="text/javascript">
+function googleTranslateElementInit() {
+	new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</div>
+</li>
+</ul>
+</div>
+</nav>       
     <div class="row no-gutters m-3 justify-content-around" >
         
         <div class="col-sm-7  rounded p-4" >
@@ -261,7 +272,7 @@
                     </div>
                     Zip code
                     <div class="row">
-                        <div class="col-sm-3"> <input class="form-control" style="font-size: small;" id="zipcode" name="zipcode" type="text" maxlength="10" onkeypress=" return isNumber(event)" required onchange="cardselection(event)"></div><u style="color: #2a81b6;">Get the zip code</u>
+                        <div class="col-sm-3"> <input class="form-control" style="font-size: small;" id="zipcode" name="zipcode" type="text" maxlength="10" onkeypress=" return isNumber(event)" onchange="cardselection(event)"></div><u style="color: #2a81b6;">Get the zip code</u>
                     </div>
                 </div>
                 
@@ -345,7 +356,7 @@
                  <br/>
                  <h6 style="color:black;">Please wait do not refresh your page or browser..</h6>
                  <br>
-                 <h6 style="color:midnightblue"><b>-Once Your Payment is Successful We Will Automatically Redirect Login Page-</b></h6>
+                 <h6 style="color:midnightblue"><b>Once Your Payment is Successful We Will Automatically Redirect To Login Page &  Please Check Your Registered Email</b></h6>                
              </div> 
             </div>  
         </div>

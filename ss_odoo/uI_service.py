@@ -60,7 +60,8 @@ def login():
 
 @app.route('/', methods=['POST', 'GET'])
 def payment_gateway():
-     return render_template("payment_gatway.html")
+    return render_template("Mainscreen.html")
+     #return render_template("payment_gatway.html")
 
 @app.route('/validateUser', methods=["POST", 'GET'])
 def validate_user():
@@ -122,6 +123,30 @@ def  addonsubusers():
         print "ADD ON USERS CREATION EXCEPTION :: %s"%er
     return redirect(resp) 
 
+@app.route("/sendmail", methods=["POST", "GET"])
+def send_mail():
+    try:
+        if request.method == "POST":
+	    kwargs = {
+	            "custName" : request.form["name"],
+		    "custCompany" : request.form["company"],
+	            "custEmailAdd" : request.form["mail"],
+		    "custPhone" : request.form['phoneNumber'],
+		    "custmsg" : request.form['message']
+		}
+	    data = json.dumps(kwargs)
+            resp = requests.post(server +'/sendmail', json=data)
+	else:
+            print"GET METHOD NOT SUPPORTED THIS FUNCTION"
+	
+    except Exception as er:
+        print("SEND MAIL NOTIFICATION FUNCTION EXCEPTION ERROR :: %s"%er)
+    return render_template("Mainscreen.html") 
+
+@app.route("/paymentscreen", methods=["POST", "GET"])
+def paymentscreen():
+    return render_template("payment_gatway.html")
+
 @app.route('/payment', methods=["POST", 'GET'])
 def payment():
     try:
@@ -166,4 +191,4 @@ def payment():
 
 
 if __name__ == "__main__":
-    app.run(host='10.6.7.88', port=4200)
+    app.run(host='0.0.0.0', port=4200)

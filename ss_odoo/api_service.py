@@ -150,5 +150,18 @@ def getdbList():
         print "[WARNING] GET DATABASE NAME LIST EXCEPTION ::%s"%er
     return jsonify(resp)
 
+@app.route('/sendmail', methods=["GET", "POST"])
+def sendmail():
+    try:
+        if request.method == "POST":
+            resp = json.loads(request.get_json()) 
+            odoo_libConn.sendFeedbackMail(resp)
+	else:
+            print"UN-Suppoted Method"
+
+    except Exception as er:
+        print "SEND MAIL NOTIFICATION FUNCTION API SERVICE ERROR :: %s"%er
+    return "SUCCESS"
+
 if __name__ == "__main__":
-    app.run(host='10.6.7.88', port=8002)
+    app.run(host='0.0.0.0', port=8002)

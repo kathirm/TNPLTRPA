@@ -24,7 +24,7 @@ function totalIt(event) {
     var op1= document.getElementById("orderProduct")
         op1.innerHTML = "";
     var ary = [];
-    var productAmt={crm:10,wms:20,hr:30};
+    var productAmt={crm:50,wms:50,hr:50};
 
     for(var i=0;i<event.target.selectedOptions.length;i++){
         var pAmount;

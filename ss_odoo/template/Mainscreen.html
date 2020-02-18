@@ -1,0 +1,616 @@
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Odoo Self-Service</title>
+    <link rel="icon" type="image/png" href="./img/title_logo.png" sizes="16x16">
+    <!-- Plugin -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="./img/main.js"></script>
+     <!-- Latest compiled and minified CSS -->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+
+     <!-- Latest compiled and minified JavaScript -->
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+
+     <script async src="//jsfiddle.net/ev035L6s/embed/"></script>
+
+     <link rel="stylesheet" type="text/css" href="./img/main.css">
+
+</head>
+<body>
+      <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #2e75b5;"> 
+        <a class="navbar-brand" href="#">
+           <!--<img src="./img/storaze logopng.png" alt="" style="height: 40px;">-->
+		<img src="./img/storaze_logo.jpg" alt="" style="height:3.2rem">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link active" href="#Home">Home</a>
+              <!-- <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a> -->
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#solutions">Solutions</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#calculator">Pricing</a>
+              </li> 
+              <li class="nav-item">
+                <a class="nav-link" href="#contactus">Contact Us</a>
+              </li>    
+              <li class="nav-item">
+                  <a class="nav-link" href="/paymentscreen">
+                      <button class="rounded" style="background-color: #74b251;border: #74b251;" id="buyitbtn">Buy it now</button>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="/login">
+                      <button class="rounded" style="background-color: lightgray;border: lightgray;" id="loginbtn">Login</button>
+                  </a>
+              </li> 
+              <li class="nav-item">
+                <a class="nav-link" >    
+                     <div class="ml-4" id="google_translate_element" style="margin-top: 1%;"></div>
+                </a>
+              </li>   
+          </ul>
+      
+        </div>
+      </nav>
+
+    <div class="">
+        <!-- Form -->
+        <form action="sendmail" method="POST" enctype='application/json' id="formid" name="form22" onsubmit="submitForm()">
+     <!-- Row -->
+     <div class="row no-gutters" id="Home">
+        <div class="col-sm-12">
+            <div class="row no-gutters " style="background-image: url('./img/vec1.jpg'); background-size: cover; background-repeat: no-repeat;height:99vh;">
+            </div>
+        </div>
+     </div>
+      <!-- Row -->
+
+      <!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+    Launch demo modal
+  </button> -->
+  <section id="solutions" class="p-5">
+     <div class="row no-gutters mt-4 text-center">
+            <div class="col-sm-4">
+               <img data-toggle="modal" data-target="#crmpopup" src="./img/crm.JPG" alt="">
+               <h6>CRM</h6>
+            </div>
+            <div class="col-sm-4">
+                <img data-toggle="modal" data-target="#wmspopup" src="./img/wms.JPG" alt="">
+                <h6>WMS</h6>
+
+            </div>
+            <div class="col-sm-4">
+                <img data-toggle="modal" data-target="#hrpopup" src="./img/hr.JPG" alt="">
+                <h6>HR</h6>
+
+            </div>
+     </div>
+     </section>
+     <!-- Row -->
+   <div class="row no-gutters" id="calculator" style="background-color:#e3e0e2;">
+    <div class="col-sm-12">
+    <div class="row no-gutters justify-content-center text-right mt-4 ml-4">
+        <div class="col-sm-2">
+            <h6>Choose the number of <b>Agents</b></h6>
+        </div>
+        <div class="col-sm-3 ml-4 text-left">
+            <!-- <div class="col-sm-5" id="yearDropdown">
+                <select class="selectpicker yearselect" style="font-size:small;" id="yrdrop" name="expiredYear" onchange="cardselection(event)">
+                    <option value=""> Year </option>
+                 </select>
+            </div> -->
+            <select class="selectpicker userdropdown" id="multifive" style="font-size:small;" aria-placeholder="Users" onchange="Monthlyprice(event)">
+                <option value="0" selected="selected">Select Users</option>
+            </select>
+                <!-- <input type="text" id="agents" style="font-size: small;" onkeypress=" return isNumber(event)" required onkeyup="fn(event)"><button style="border:none ;background-color:#afabaa ;color:black;">Users</button> -->
+        </div>
+    </div>
+    <br>
+    <div class="row no-gutters justify-content-center">
+        <div class="col-sm-7">
+            <div class="row no-gutters justify-content-center">
+                <div class="col-sm-4 text-left">
+                    <h6>Choose your <b>Module</b></h6>
+                </div>
+                 <div class="col-sm-5">
+
+                </div>
+            </div>
+            </div>
+       </div>
+       <div class="row no-gutters mt-2 justify-content-center">
+           <div class="col-sm-7">
+               <div class="row no-gutters justify-content-center">
+                   <div class="col-sm-4">
+                      <div class="row no-gutters">
+                          <div class="col-sm-7 rounded-lg" style="background-color: white;">
+                            <div class="row no-gutters">
+                                <div class="col-6">
+                                    <img src="./img/crm.JPG" alt="" style="height: 67px;" class="p-2">
+                                </div>
+                                <div class="col-6">
+                                    <div class="row no-gutters mt-2">
+                                        <div class="col-sm-6">
+                                            <h6>CRM</h6>
+                                        </div>
+                                        <div class="col-sm-6 mt-1 text-center">
+                                            <input type="checkbox" value="1" id="crmcheck" onclick="prd(event)">
+                                        </div>
+                                    </div>
+                                    <div class="row no-gutters mt-2">
+                                        <div class="col-sm-8">
+                                            <h6 style="font-size: x-small;">R$50,00/month</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                            </div>
+                          </div>
+                      </div>
+                      <div class="row no-gutters">
+                        <div class="col-sm-7 rounded-lg mt-1" style="background-color: white;">
+                          <div class="row no-gutters">
+                              <div class="col-6">
+                                  <img src="./img/wms.JPG" alt="" style="height: 67px;" class="p-2">
+                              </div>
+                              <div class="col-6">
+                                  <div class="row no-gutters mt-2">
+                                      <div class="col-sm-6">
+                                          <h6>WMS</h6>
+                                      </div>
+                                      <div class="col-sm-6 mt-1 text-center">
+                                          <input type="checkbox" value="1" id="wmscheck" onclick="prd(event)">
+                                      </div>
+                                  </div>
+                                  <div class="row no-gutters mt-2">
+                                      <div class="col-sm-8">
+                                          <h6 style="font-size: x-small;">R$50,00/month</h6>
+                                      </div>
+                                  </div>
+                              </div>
+                          
+                          </div>
+                        </div>
+                    </div>
+                    <div class="row no-gutters">
+                        <div class="col-sm-7 rounded-lg mt-1" style="background-color: white;">
+                          <div class="row no-gutters">
+                              <div class="col-6">
+                                  <img src="./img/hr.JPG" alt="" style="height: 67px;" class="p-2">
+                              </div>
+                              <div class="col-6">
+                                  <div class="row no-gutters mt-2">
+                                      <div class="col-sm-6">
+                                          <h6>HR</h6>
+                                      </div>
+                                      <div class="col-sm-6 mt-1 text-center">
+                                          <input type="checkbox" value="1" id="hrcheck" onclick="prd(event)">
+                                      </div>
+                                  </div>
+                                  <div class="row no-gutters mt-2">
+                                      <div class="col-sm-8">
+                                          <h6 style="font-size: x-small;">R$50,00/month</h6>
+                                      </div>
+                                  </div>
+                              </div>
+                          
+                          </div>
+                        </div>
+                    </div>
+                   </div>
+                   <!-- Monthly Price -->
+                   <div class="col-sm-5">
+                    <div class="row no-gutters">
+                      <div class="col-sm-10" style="background-color: white;">
+                        <div class="row no-gutters p-2">
+                            <div class="col-sm-6" style="background-color:#deeaf6;">
+                                <h6 style="text-align: center;" class="mt-1">Monthly Price</h6>
+                            </div>
+                            <div class="col-sm-12 mt-1" style="background-color:#deeaf6;">
+                                <div class="row no-gutters mt-2 ml-2" id="usr">
+                                    <div class="col-sm-1">
+                                    <b id="peruser"></b>
+                                    </div>
+                                    <div class="col-sm-8">User(s)</div>
+                                    <div class="col-sm-3">
+                                     <h6>R$ <b id="useramount"></b></h6>   
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row no-gutters mt-2 ml-2">
+                                    <div class="col-sm-1">
+                                        <b id="permodule"></b>
+                                    </div>
+                                    <div class="col-sm-8">Module(s)</div>
+                                    <div class="col-sm-3">
+                                        <b id="modulecount"></b>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row no-gutters ml-4">
+                                    <div class="col-sm-5">
+                                        <b>Total</b>/month
+                                    </div>
+                                    <div class="col-sm-5 text-right">
+                                      <h6>R$ <b id="totalamount">0</b></h6>  
+                                    </div>
+                                </div>
+                                <div class="row mt-4 justify-content-end">
+                                    <div class="col-sm-5 text-right mr-3">
+                                        <a href="/paymentscreen">
+                                            <input type="button" style="font-size: x-small;background-color: #74b251;border: #74b251;" id="chckoutbtn" value="Checkout">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                      <div class="col-sm-5 m-1">
+                                       <!-- <img src="./img/storaze logopng.png" alt="" style="height: 15px;">-->
+					<img src="./img/storaze_logo.jpg" alt="" style="width: 41%;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-gutters p-2">
+                            <div class="col-sm-8">
+                                <h6 style="font-size: x-small;">if you need some help or doubt please contact our team</h6>
+                            </div>
+                            <div class="col-sm-4">
+                                <a href="#contactus">
+                                    <input type="button" style="font-size: x-small;background-color:#527bcb;border: #527bcb;" value="Contact us">
+                                </a>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+       <br>
+       <br>
+    </div>
+   </div>
+<br>
+<br>
+
+<!-- Footer -->
+<section id="contactus" class="container-fluid" style="background-color:#2e75b5;">
+    <div class="row no-gutters">
+        <div class="col-sm-12">
+        <div class="row no-gutters">
+                <div class="col-sm-12">
+                    <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+                <!--        <img src="./img/storaze logopng.png" alt="" style="height: 40px;">-->
+			<img src="./img/storaze_logo.jpg" alt="" style="margin-left: 1%;height:auto; width: 6%;">
+                        <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
+                            <div class="navbar-nav m-1">
+                                <a class="nav-item nav-link active text-white" href="#Home">Home <span class="sr-only">(current)</span></a>
+                                <a class="nav-item nav-link text-white" href="#solutions">Solutions</a>
+                                <a class="nav-item nav-link text-white" href="#calculator">Pricing</a>
+                                <a class="nav-item nav-link text-white" href="#contactus">Contact Us</a>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <div class="row no-gutters">
+                <div class="col-sm-6">
+		
+                    <div class="row no-gutters justify-content-around">
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" name="name" placeholder="Name" required>
+                        </div>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" name="company" placeholder="Company" required>
+                        </div>
+                    </div>
+                    <div class="row no-gutters justify-content-around">
+                        <div class="col-sm-5 mt-2">
+                            <input type="email" name="mail" class="form-control" placeholder="E-mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                        </div>
+                        <div class="col-sm-5 mt-2">
+                            <input type="text" class="form-control" onkeypress=" return isNumber(event)" name="phoneNumber" placeholder="Phone" required>
+                        </div>
+                    </div>
+                    <div class="row no-gutters justify-content-around">
+                        <div class="col-sm-11 mt-2 ">
+                            <textarea name="message" class="form-control" style="resize: none;" rows="5" cols="52" placeholder="Message" required></textarea>
+                        </div>
+                    </div>
+                    <div class="row no-gutters justify-content-start">
+                        <div class="col-sm-11 mt-2 ml-4">
+                            <button type="submit" style="width: 12%;border: #1f4e78;background-color: #1f4e78;color: white;text-align: center;">SEND</button type="submit">
+                        </div>
+                    </div>	
+                    <br>
+                    <br>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row no-gutters justify-content-center">
+                        <div class="col-sm-6 borderradius" style="background-color: white;">
+                            <div class="row no-gutters">
+                                <div class="col-sm-12 mt-1">
+                                    <h6 style="text-align: center;color: #6ea2c7;"><b>SUBCRIBE US:</b></h6>
+                                </div>
+                            </div>
+                            <div class="row no-gutters mt-2">
+                                <div class="col-sm-2 ml-4 mt-1">
+                                    <img src="./img/youtube ps.png" alt="" style="height: 20px;">
+                                </div>
+                                <div class="col-sm-5">
+                                    <a href="https://www.youtube.com/"><h6>http://youtube.com/br</h6></a>
+                                </div>
+                            </div>
+                            <div class="row no-gutters">
+                                <div class="col-sm-2 ml-4 mt-1">
+                                    <img src="./img/linkedin ps.png" alt="" style="height: 25px;">
+                                </div>
+                                <div class="col-sm-3 text-center mt-1">
+                                    <a href="https://in.linkedin.com/"><h6>http://linkedin.com/br</h6></a>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+     <!-- POPUP CRM-->
+  <div class="modal fade" id="crmpopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content" id="rcorners1">
+        <div class="modal-body rounded-lg">
+          <div class="row no-gutters">
+              <div class="col-sm-2">
+                  <img class="ml-2" style="height: 95%;" src="./img/crm circle logo.png" alt="">
+              </div>
+              <div class="col-sm-9" style="font-size:small;">
+               <b>Customer Relationship Management is an English term that can be translated
+                into Portuguese as Customer Relationship Management. it was created to define 
+                a whole class of information systems or tools that automate customer contact 
+                functions.</b> 
+              </div>
+              <div class="col-sm-1">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+          </div>
+          <div class="row no-gutters">            
+              <div class="col-sm-4">
+                  <div class="row no-gutters">
+                    <div class="col-sm-1">
+                        <img class="ml-1 mt-3" style="height: 30px;" src="./img/contacts.JPG" alt="">
+                    </div> 
+                    <div class="col-sm-8 ml-4 mt-4">
+                        <h6 style="font-size: small;">Your contacts in one centralized place.
+                        </h6>
+                    </div>
+                  </div>
+                  <div class="row no-gutters">
+                    <div class="col-sm-1">
+                        <img class="ml-1 mt-2" style="height: 30px;" src="./img/calendar.JPG" alt="">
+                    </div>
+                    <div class="col-sm-8 ml-4 mt-3">
+                        <h6 style="font-size: small;">Control your sales agenties meeting.
+                        </h6>
+                    </div>
+                  </div>
+              </div>
+              <div class="col-sm-8 mt-3">
+                <div class="row no-gutters">
+                    <div class="col-sm-12">
+                       <img style="width: 100%;" src="img/vec2.jpg" alt="">
+                    </div>
+                </div>
+              </div>
+          </div> 
+          <br>
+        </div>
+      </div>
+    </div>
+    </div>
+
+  <!-- POPUP WMS-->
+  <div class="modal fade" id="wmspopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content" id="rcorners2">
+        <div class="modal-body rounded-lg">
+          <div class="row no-gutters">
+              <div class="col-sm-2">
+                  <img class="ml-2" style="height: 85%;" src="./img/wms circle logo.png" alt="">
+              </div>
+              <div class="col-sm-9" style="font-size:small;">
+               <b>A Warehouse Management System, or Warehouse Management System, is an 
+                important part of the supply chain and provides targeted inventory rotation,
+                smart picking guidelines, automatic cross-docking consolidation to maximize the 
+                use of valuable warehouse sapce.</b> 
+              </div>
+              <div class="col-sm-1">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+          </div>
+          <div class="row no-gutters">            
+              <div class="col-sm-4">
+                  <div class="row no-gutters">
+                    <div class="col-sm-1">
+                        <img class="ml-1 mt-3" style="height: 30px;" src="./img/purchase.JPG" alt="">
+                    </div> 
+                    <div class="col-sm-8 ml-4 mt-4">
+                        <h6 style="font-size: small;">Purchase orders to replace goods.
+                        </h6>
+                    </div>
+                  </div>
+                  <div class="row no-gutters">
+                    <div class="col-sm-1">
+                        <img class="ml-1 mt-2" style="height: 30px;" src="./img/sales.JPG" alt="">
+                    </div>
+                    <div class="col-sm-8 ml-4 mt-3">
+                        <h6 style="font-size: small;">Sales to control sold products for your Inventory.
+                        </h6>
+                    </div>
+                  </div>
+                  <div class="row no-gutters">
+                    <div class="col-sm-1">
+                        <img class="ml-1 mt-2" style="height: 30px;" src="./img/inventry.JPG" alt="">
+                    </div>
+                    <div class="col-sm-8 ml-4 mt-3">
+                        <h6 style="font-size: small;">Inventory to control your stock and logistic activities.
+                        </h6>
+                    </div>
+                  </div>
+              </div>
+              <div class="col-sm-8 mt-3">
+                <div class="row no-gutters">
+                    <div class="col-sm-12">
+                       <img style="width: 100%;" src="img/vec2.jpg" alt="">
+                    </div>
+                </div>
+              </div>
+          </div> 
+          <br>
+        </div>
+      </div>
+    </div>
+    </div>
+
+      <!-- POPUP HR-->
+  <div class="modal fade" id="hrpopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content" id="rcorners3">
+        <div class="modal-body rounded-lg">
+          <div class="row no-gutters">
+              <div class="col-sm-2">
+                  <img class="ml-2" style="height: 85%;" src="./img/hr circle logo.png" alt="">
+              </div>
+              <div class="col-sm-9" style="font-size:small;">
+               <b>A Human Resources Management System(HRMS) is a software that combines a 
+                   number of systems and processes to ensure the easy management of human 
+                   resources, to facilities HR processes and employee control activities.</b> 
+              </div>
+              <div class="col-sm-1">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+          </div>
+          <div class="row no-gutters">            
+              <div class="col-sm-4">
+                  <div class="row no-gutters">
+                    <div class="col-sm-1">
+                        <img class="ml-1 mt-3" style="height: 30px;" src="./img/time_mm.JPG" alt="">
+                    </div> 
+                    <div class="col-sm-8 ml-4 mt-4">
+                        <h6 style="font-size: small;">Purchase orders to replace goods.
+                        </h6>
+                    </div>
+                  </div>
+                  <div class="row no-gutters">
+                    <div class="col-sm-1">
+                        <img class="ml-1 mt-2" style="height: 30px;" src="./img/mmskills.JPG" alt="">
+                    </div>
+                    <div class="col-sm-8 ml-4 mt-3">
+                        <h6 style="font-size: small;">Sales to control sold products for your Inventory.
+                        </h6>
+                    </div>
+                  </div>
+                  <div class="row no-gutters">
+                    <div class="col-sm-1">
+                        <img class="ml-1 mt-2" style="height: 30px;" src="./img/allocatetime.JPG" alt="">
+                    </div>
+                    <div class="col-sm-8 ml-4 mt-3">
+                        <h6 style="font-size: small;">Inventory to control your stock and logistic activities.
+                        </h6>
+                    </div>
+                  </div>
+              </div>
+              <div class="col-sm-8 mt-3">
+                <div class="row no-gutters">
+                    <div class="col-sm-12">
+                       <img style="width: 100%;" src="img/vec2.jpg" alt="">
+                    </div>
+                </div>
+              </div>
+          </div> 
+          <br>
+        </div>
+      </div>
+    </div>
+    </div>
+    </form>
+    </div>
+
+   <!--GOOGLETranslate-->
+   <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en',layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+    }
+    </script>
+<script type="text/javascript" src="./img/Translate.js"></script>
+
+<script>
+
+
+function submitForm() {
+    $('form[name="form22"]').submit();
+    alert("Thank you for  your feeedback")
+    $('form[name="form22"][0]').reset();
+}
+
+ 
+var packamnt = 50.00;
+var sum = 0;
+var number =5;
+for(var i = 1; i < number; i++){
+    // if((i % 5 === 0)||(i % 5 === 0)){
+    //   sum = sum + i;
+    // }
+    $('#multifive').append('<option value="' + (number * i) + '">' + (number * i) + '</option>')
+    
+  }//Monthlyprice(number);
+
+
+$(function () {
+    $('input[type="text"],input[type="email"],select, textarea').val('');
+    $('input[type="checkbox"]').prop('checked', false);
+     $('.userdropdown').selectpicker();
+
+     $('.navbar-nav a').click(function(e) {
+  	
+  	var targetHref = $(this).attr('href');
+	  
+	$('html, body').animate({
+		scrollTop: $(targetHref).offset().top
+	}, 1000);
+    
+    e.preventDefault();
+  });
+
+ });
+</script>
+
+
+</body>
+</html>

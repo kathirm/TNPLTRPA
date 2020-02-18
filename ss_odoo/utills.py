@@ -17,6 +17,7 @@ def read_config():
         mailConfig['smtp_port'] = config['mailconfiguration']['smtp_port']
         mailConfig['username']  = config['mailconfiguration']['username']
         mailConfig['password']  = config['mailconfiguration']['password']
+	mailConfig['from_mail'] = config['mailconfiguration']['from_mail']
         mailConfig['subject']   = config['mailconfiguration']['subject']
     except Exception as er:
         print("\n [WARNING] READ MAIL NOTIFICATION CONFIGURATION FUNCTION EXCEPTION :: %s"%er)
@@ -30,31 +31,24 @@ def email_notification(targets, body=None,attachment_file_path=None):
         smtp_ssl_port = int(mail_info['smtp_port']);
         username = mail_info['username'];
         password = mail_info['password'];
+	fromMail = mail_info['from_mail'];
         subject  = mail_info['subject'];
-
         sender  = mail_info['username'];
-        msg = MIMEMultipart()
-        msg['From'] = sender;
+        msg = MIMEMultipart('alternative') 
+        msg['From'] = fromMail;
+	msg['Subject'] = subject;
         msg['To'] = targets;
 
-        if subject is not None:
-            msg['Subject'] = subject;
+	mime_text = MIMEText(body, 'html')
+	msg.attach(mime_text)
 
-        if body is not None:
-            txt = MIMEText(body, 'html')
-            msg.attach(txt)
+	server = smtplib.SMTP(smtp_ssl_host, smtp_ssl_port)
+	server.starttls()
+	server.login(username, password)
+	server.sendmail(fromMail, targets, msg.as_string())
+	server.quit()
 
-        if attachment_file_path is not None:
-            filepath = attachment_file_path;
-            with open(filepath, 'rb') as f:
-                docx = MIMEApplication(f.read())
-            docx.add_header('Content-Disposition', 'attachment', filename=os.path.basename(filepath))
-            msg.attach(docx)
-
-        server = smtplib.SMTP_SSL(smtp_ssl_host, smtp_ssl_port)
-        server.login(username, password)
-        server.sendmail(sender, targets, msg.as_string())
-        server.quit()
+	
         print("\n [SUCCESS] MAIL NOTIFICATION ALERT SEND SUCCESSFULLY :: %s"%targets.upper()+'\n')
 
     except Exception as er:
