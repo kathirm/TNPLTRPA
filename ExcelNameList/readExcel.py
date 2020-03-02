@@ -3,13 +3,15 @@ import requests, json
 import string
 import random, xlsxwriter
 from pandas import DataFrame
+from sendemail import *
 
 tenantName = sys.argv[1]
 token = None
 def login():
     tenant_Name = tenantName
     pwd = "!changeme!"
-    login_url = "http://maher.terafastnet.com:8080/auth/login?username=Admin@%s&password=%s" %(tenantName, pwd)
+    #login_url = "http://maher.terafastnet.com:8080/auth/login?username=Admin@%s&password=%s" %(tenantName, pwd)
+    login_url = "http://159.65.157.226:8080/auth/login?username=Admin@%s&password=%s" %(tenantName, pwd)
     headers = []
     token = requests.get(login_url, headers)
     if token.text is not None:
@@ -28,6 +30,7 @@ rows = []
 username = []
 studentpawd = []
 studNameList = []
+studEmails = []
 
 token = login()
 
@@ -39,6 +42,7 @@ for i in range(sheet.nrows):
     studId =  int(columns[1])
     studName = str(columns[2])
     studMob = columns[3]
+    studEmails = columns[4]
 
     chars = string.ascii_letters + string.digits;
     password = ''
@@ -54,15 +58,12 @@ for i in range(sheet.nrows):
     studentpawd.append(randomPwd)
     studNameList.append(studName)
 
-#df = DataFrame({'2. User Name': username, '3. Password':studentpawd, '1. Student Name':studNameList })
-#df.to_excel(path + '/'+'MaherLoginList.xlsx', sheet_name='sheet1', index=False)
-
     kwargs = {
         "username" : user_name,
         "password" : randomPwd,
-        "tenant" : tenantName,
+        "tenant" : tenantName, 
         "role" : "Student",
-        "emailUsername" : "Students@terafastnet.com",
+        "emailUsername" : studEmails,
         "userStatus" : "Active",
         "statusReason" : "",
         "blockCheckout" : "false",
@@ -70,15 +71,18 @@ for i in range(sheet.nrows):
             "password"
             ]
         }
-    url = "http://maher.terafastnet.com:8080/users"
+    #url = "http://maher.terafastnet.com:8080/users"
+    url = "http://159.65.157.226:8080/users"
     headers = {"Authorization" : "Bearer %s"%token, "Content-Type":"application/json"}
     resp = requests.post(url, headers = headers , data = json.dumps(kwargs))
     if resp.status_code >= 200 and resp.status_code < 300:
         print("[INFO] NEW USER CREATED SUCCESSFULL HTTP RESPONSE CODE : %s"%resp)
+        sendmail(studEmails, user_name, randomPwd)
+        print("[SUCCESS] EMAIL NOTIFICATION SEND SUCCESSFULLY :: %s"%studEmails)
     elif resp.status_code >= 400:
-        print("[WARNING] NEW USER CREATED RESPONSE FAILED")
+        print("[WARNING] NEW USER CREATED RESPONSE FAILED",resp.text)
     else:
         print("[WARNING] INVALID RESPONSE CODE")
 
 df = DataFrame({'2. User Name': username, '3. Password':studentpawd, '1. Student Name':studNameList })
-df.to_excel(path + '/'+'MaherLoginList.xlsx', sheet_name='sheet1', index=False)
+df.to_excel(path + '/'+'uptd26Mahercred.xlsx', sheet_name='sheet1', index=False)
