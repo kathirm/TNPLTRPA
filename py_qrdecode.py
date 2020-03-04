@@ -1,7 +1,7 @@
 from PIL import Image
 import zbarlight
 
-file_path = 'QR.png'
+file_path = 'cbimage.jpg'
 with open(file_path, 'rb') as image_file:
     image = Image.open(image_file)
     image.load()
