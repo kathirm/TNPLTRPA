@@ -11,9 +11,9 @@ def sendmail(studEmail, userId, randomPwd):
     try:
         smtp_ssl_host = 'smtp.gmail.com'
         smtp_ssl_port = 465
-        username = 'terafastnet@gmail.com'
-        password = 'Quafina123*'
-        sender = 'terafastnet@gmail.com'
+        username = 'terafastnetworkteam@gmail.com'
+        password = 'abcd@12345'
+        sender = 'terafastnetworkteam@gmail.com'
         targets = ['technical@maher.ac.in',studEmail]
 
         msg = MIMEMultipart()
@@ -21,13 +21,13 @@ def sendmail(studEmail, userId, randomPwd):
         msg['From'] = sender
         msg['To'] = ', '.join(targets)
 
-        content = "Dear Student<br></br> Login ID: %s </br> Password : %s </br></br></br> Thanks & Regards </br> MAHER SUPPORT TEAM"%(userId, randomPwd)
+        content = "Dear Student<br></br> Login ID: %s </br> Password : %s </br></br></br> <font color='red'>Note: Please ignore the previous email that you received with username and password and use this instead.</font></br> </br> Thanks & Regards </br> MAHER SUPPORT TEAM"%(userId, randomPwd)
 
         txt = MIMEText(content, 'html')
         msg.attach(txt)
 
         server = smtplib.SMTP_SSL(smtp_ssl_host, smtp_ssl_port)
-        server.login(username, "Quafina123*")
+        server.login(username, "abcd@12345")
         server.sendmail(sender, targets, msg.as_string())
         server.quit()
     except Exception as er:

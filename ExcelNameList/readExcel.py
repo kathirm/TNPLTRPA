@@ -6,12 +6,13 @@ from pandas import DataFrame
 from sendemail import *
 
 tenantName = sys.argv[1]
+ExfileName = str(sys.argv[2])
 token = None
 def login():
     tenant_Name = tenantName
     pwd = "!changeme!"
-    login_url = "http://maher.terafastnet.com:8080/auth/login?username=Admin@%s&password=%s" %(tenantName, pwd)
-    #login_url = "http://159.65.157.226:8080/auth/login?username=Admin@%s&password=%s" %(tenantName, pwd)
+    #login_url = "http://maher.terafastnet.com:8080/auth/login?username=Admin@%s&password=%s" %(tenantName, pwd)
+    login_url = "http://159.65.157.226:8080/auth/login?username=Admin@%s&password=%s" %(tenantName, pwd)
     headers = []
     token = requests.get(login_url, headers)
     if token.text is not None:
@@ -23,7 +24,7 @@ def login():
     return token
 
 path = os.getcwd()
-workbook = xlrd.open_workbook(path+"/"+"201819_MBBS_5.xlsx","rb")
+workbook = xlrd.open_workbook(path+"/"+ExfileName,"rb")
 sheet = workbook.sheet_by_index(0)
 rows = []
 
@@ -71,8 +72,8 @@ for i in range(sheet.nrows):
             "password"
             ]
         }
-    url = "http://maher.terafastnet.com:8080/users"
-    #url = "http://159.65.157.226:8080/users"
+    ##url = "http://maher.terafastnet.com:8080/users"
+    url = "http://159.65.157.226:8080/users"
     headers = {"Authorization" : "Bearer %s"%token, "Content-Type":"application/json"}
     resp = requests.post(url, headers = headers , data = json.dumps(kwargs))
     if resp.status_code >= 200 and resp.status_code < 300:
@@ -85,4 +86,4 @@ for i in range(sheet.nrows):
         print("[WARNING] INVALID RESPONSE CODE")
 
 df = DataFrame({'2. User Name': username, '3. Password':studentpawd, '1. Student Name':studNameList })
-df.to_excel(path + '/'+'201819_MBBS_5_credit.xlsx', sheet_name='sheet1', index=False)
+df.to_excel(path + '/'+'credit_'+ExfileName, sheet_name='sheet1', index=False)
