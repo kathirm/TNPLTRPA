@@ -1,0 +1,32 @@
+[
+    {
+
+        "custInfo" : {
+            "Name" : "G.A.DE AZEVEDO ELETRONICOS E INFORMATICA",
+            "Identity" : "1105733642",
+            "IdentityType" : "cpf"
+        },
+        "payment" : {
+            "Type" : "creditcard",
+            "Installments" : 1,
+            "Authenticate" : "true",
+            "ReturnUrl" : "http://www.terafastnet.com"
+        },
+        "3" : {
+            "Type" : "Amex"
+        },
+        "4" : {
+            "Type" : "Visa"
+        },
+        "5" : {
+            "Type" : "Master"
+        },
+        "6" : {
+            "Type" : "Diners"
+        
+        }
+
+    
+    }
+
+]
