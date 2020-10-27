@@ -23,7 +23,7 @@ cmake==3.13.3
 CMRESHandler==1.0.0
 configparser==4.0.2
 constantly==15.1.0
-cryptography==2.7
+cryptography==3.2
 cssselect==1.0.3
 cycler==0.9.0
 cymem==2.0.2
