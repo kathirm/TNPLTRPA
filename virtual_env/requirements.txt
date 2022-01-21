@@ -61,7 +61,7 @@ img2pdf==0.3.3
 imutils==0.5.2
 incremental==17.5.0
 ipaddress==1.0.22
-ipython==2.4.1
+ipython==7.16.3
 itsdangerous==1.1.0
 Jinja2==2.10.1
 jmespath==0.9.3
