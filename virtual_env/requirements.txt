@@ -140,7 +140,7 @@ s3transfer==0.1.13
 schedule==0.6.0
 scikit-image==0.10.1
 scipy==0.17.0
-Scrapy==1.6.0
+Scrapy==1.8.2
 scrapy-redis==0.6.8
 scrapyd==1.2.1
 scrapyd-client==1.1.0
